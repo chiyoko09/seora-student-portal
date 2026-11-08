@@ -366,7 +366,78 @@ const students = {
   schedule:"Horario pendiente de asignación"
  }
 };
+// ====================================
+// HORARIOS DE LOS ESTUDIANTES
+// ====================================
 
+const horarioMusica = `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Ciencias/Técnica vocal · Ensamble
+Martes/Historia · Lenguaje · Matemáticas · Inglés/Piano básico · Teoría musical
+Miércoles/Ciencias · Inglés · Historia · Lenguaje/Interpretación · Entrenamiento auditivo
+Jueves/Matemáticas · Ciencias · Inglés · Historia/Composición · Ensamble
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Práctica instrumental · Evaluación artística`;
+
+const horarios = {
+ "park.minsoo@seora.edu": horarioMusica,
+ "lee.mike@seora.edu": horarioMusica,
+ "kim.nickolas@seora.edu": horarioMusica,
+ "lim.noah@seora.edu": horarioMusica,
+ "osumi.chiyoko@seora.edu": horarioMusica,
+ "bae.sora@seora.edu": horarioMusica,
+
+ "kang.yejun@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Historia/Técnica de danza · Ballet
+Martes/Ciencias · Lenguaje · Inglés · Matemáticas/Danza contemporánea · Preparación física
+Miércoles/Historia · Ciencias · Lenguaje · Tutoría/Expresión corporal · Coreografía
+Jueves/Matemáticas · Inglés · Ciencias · Historia/Danza urbana · Ensamble coreográfico
+Viernes/Lenguaje · Matemáticas · Inglés · Tutoría/Práctica escénica · Evaluación artística`,
+
+ "seo.ara@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Ciencias/Expresión corporal · Improvisación
+Martes/Historia · Lenguaje · Matemáticas · Inglés/Interpretación · Voz escénica
+Miércoles/Ciencias · Inglés · Historia · Lenguaje/Análisis de texto · Improvisación
+Jueves/Matemáticas · Ciencias · Inglés · Historia/Construcción de personaje · Teatro
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Práctica escénica · Evaluación artística`,
+
+ "han.doyun@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Historia/Armonía avanzada · Composición
+Martes/Ciencias · Lenguaje · Inglés · Matemáticas/Producción musical · Piano
+Miércoles/Historia · Inglés · Ciencias · Tutoría/Arreglos · Entrenamiento auditivo
+Jueves/Matemáticas · Lenguaje · Inglés · Historia/Composición aplicada · Ensamble
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Proyecto musical · Evaluación artística`,
+
+ "choi.minji@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Ciencias/Dibujo · Color
+Martes/Historia · Lenguaje · Matemáticas · Inglés/Pintura · Historia del arte
+Miércoles/Ciencias · Inglés · Historia · Lenguaje/Ilustración · Composición visual
+Jueves/Matemáticas · Ciencias · Inglés · Historia/Técnicas mixtas · Taller creativo
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Proyecto visual · Evaluación artística`,
+
+ "yoon.haru@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Historia/Lenguaje audiovisual · Cámara
+Martes/Ciencias · Lenguaje · Inglés · Matemáticas/Edición · Fotografía
+Miércoles/Historia · Inglés · Ciencias · Tutoría/Guion · Narrativa visual
+Jueves/Matemáticas · Lenguaje · Inglés · Historia/Iluminación · Producción
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Proyecto audiovisual · Evaluación artística`,
+
+ "jung.iseul@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Historia/Escenografía · Diseño espacial
+Martes/Ciencias · Lenguaje · Inglés · Matemáticas/Materiales · Maquetas
+Miércoles/Historia · Inglés · Ciencias · Tutoría/Iluminación escénica · Taller
+Jueves/Matemáticas · Lenguaje · Inglés · Historia/Construcción escénica · Diseño técnico
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Proyecto escénico · Evaluación artística`,
+
+ "kwon.taemin@seora.edu": `Día/08:30–12:30/13:20–15:10
+Lunes/Lenguaje · Matemáticas · Inglés · Historia/Interpretación avanzada · Voz
+Martes/Ciencias · Lenguaje · Inglés · Matemáticas/Análisis dramático · Improvisación
+Miércoles/Historia · Inglés · Ciencias · Tutoría/Construcción de personaje · Teatro
+Jueves/Matemáticas · Lenguaje · Inglés · Historia/Interpretación frente a cámara · Voz
+Viernes/Lenguaje · Matemáticas · Ciencias · Tutoría/Proyecto final · Evaluación artística`
+};
+
+Object.keys(horarios).forEach(email => {
+ if(students[email]) students[email].schedule = horarios[email];
+});
 // ====================================
 // CUENTAS INSTITUCIONALES
 // ====================================
@@ -555,8 +626,10 @@ function renderProfile(){
   <div class="data"><small>Especialidad</small><strong>${student.specialty}</strong></div>
   <div class="data"><small>Año académico</small><strong>2026</strong></div>`;
 
- document.getElementById("schedule-content").innerHTML=
-  `<div class="data">${student.schedule}</div>`;
+ document.getElementById("schedule-content").innerHTML =
+  `<div style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.9">
+    ${student.schedule.replaceAll("<","&lt;").replaceAll(">","&gt;")}
+  </div>`;
 
  renderStudentAttendance();
 
