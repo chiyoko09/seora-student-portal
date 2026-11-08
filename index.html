@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,16 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b1730">
 <title>SEORA | Student Portal</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;background:#edf2f8;color:#172943;font-family:Arial,Helvetica,sans-serif}
-header{background:linear-gradient(135deg,#09152c,#1c3b64);color:white;padding:30px 18px;border-bottom:4px solid #9bbbdc}
+header{background:linear-gradient(135deg,#09152c,#1c3b64);color:white;padding:25px 18px;border-bottom:4px solid #9bbbdc}
 .top{max-width:950px;margin:auto;display:flex;align-items:center;gap:15px}
-.crest{width:58px;height:58px;border:1px solid #b9cee5;border-radius:12px;display:grid;place-items:center;font-size:30px;color:#dcecff}
+.crest{width:58px;height:58px;border:1px solid #b9cee5;border-radius:12px;overflow:hidden;background:white}
+.crest img{width:100%;height:100%;object-fit:cover}
 .brand small{letter-spacing:3px;color:#bdcfe3;font-size:10px}
 .brand h1{margin:6px 0 0;font-size:23px}
-.hero{max-width:950px;margin:28px auto 0}
-.hero h2{font-size:32px;margin:8px 0}
+.hero{max-width:950px;margin:25px auto 0}
+.hero h2{font-size:30px;margin:8px 0}
 .hero p{color:#d0deee;font-size:14px}
 main{max-width:950px;margin:25px auto;padding:0 17px}
 .notice{background:white;border-left:4px solid #7199c3;border-radius:8px;padding:13px;font-size:12px;line-height:1.5;color:#56677d}
@@ -30,41 +33,62 @@ main{max-width:950px;margin:25px auto;padding:0 17px}
 .panel{display:none;background:white;padding:22px;border:1px solid #d7e1ed;border-radius:12px;margin-top:20px;line-height:1.7}
 .panel.active{display:block}
 .panel h2{color:#17385f}
-.back{background:#e7eff8;border:0;padding:11px 16px;border-radius:8px;color:#254c76;cursor:pointer;margin-top:20px}
+button{cursor:pointer}
+.back,.action{background:#e7eff8;border:0;padding:11px 16px;border-radius:8px;color:#254c76;margin-top:12px}
+.action.primary{background:#17385f;color:white}
+.action.danger{background:#f8e5e5;color:#a83232}
 .data{background:#f2f6fb;border-radius:8px;padding:12px;margin:9px 0}
 .data small{display:block;color:#718198;font-size:10px;text-transform:uppercase;letter-spacing:1px}
 .data strong{font-size:14px}
+.field{width:100%;padding:11px;border:1px solid #d7e1ed;border-radius:8px;margin:6px 0 12px;font:inherit;background:white}
+textarea.field{min-height:100px;resize:vertical}
+.student-item{background:#f2f6fb;border:1px solid #d7e1ed;border-radius:9px;padding:14px;margin:10px 0}
+.student-item button{margin:5px 5px 0 0}
+.session-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin:18px 0;padding:12px;background:#e2ebf5;border-radius:9px;font-size:12px}
+.session-bar button{border:0;background:#17385f;color:white;border-radius:7px;padding:9px 12px}
 footer{text-align:center;color:#78879a;font-size:11px;padding:25px}
-/* LOGIN */
 #login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#09152c,#1c3b64);display:grid;place-items:center;z-index:9999;padding:18px}
 .login-box{background:white;width:100%;max-width:380px;border-radius:16px;padding:28px;border:1px solid #d7e1ed}
 .login-box h2{margin:0 0 6px;color:#0b1730}
 .login-box p{margin:0 0 18px;color:#697b91;font-size:13px}
 .login-box input{width:100%;padding:12px;border-radius:8px;border:1px solid #d7e1ed;margin:7px 0;background:#f8fafd}
-.login-box button{width:100%;padding:12px;border-radius:8px;border:0;background:#17385f;color:white;font-weight:bold;cursor:pointer;margin-top:12px}
-.login-box small{display:block;margin-top:12px;color:#9aa8bb;font-size:11px;line-height:1.4}
+.login-box button{width:100%;padding:12px;border-radius:8px;border:0;background:#17385f;color:white;font-weight:bold;margin-top:12px}
+.login-box small{display:block;margin-top:12px;color:#718198;font-size:11px;line-height:1.7}
+#login-error{color:#c0392b;font-size:12px;margin-top:10px;display:none}
+.status{display:inline-block;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:bold}
+.present{background:#dff3e5;color:#247542}
+.absent{background:#f8e1e1;color:#a83232}
+.late{background:#fff0d5;color:#94620d}
+.pending{background:#e8edf3;color:#65758a}
+.attendance-row{border:1px solid #d7e1ed;border-radius:9px;padding:13px;margin:10px 0}
+.attendance-row select{margin-top:8px}
+.section-label{font-size:11px;letter-spacing:2px;color:#7890aa;margin:22px 0 8px}
 @media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
+
 <body>
 
 <div id="login-screen">
  <div class="login-box">
   <h2>SEORA LOGIN</h2>
   <p>Ingresa con tu correo institucional</p>
-  <input id="email" placeholder="Email">
+  <input id="email" type="email" placeholder="Correo institucional">
   <input id="pass" type="password" placeholder="Contraseña">
   <button onclick="login()">Entrar</button>
-  <small><b>Prueba:</b><br>admin@seora.edu / admin123<br>park.minsoo@seora.edu / seora2026</small>
-  <div id="login-error" style="color:#c0392b;font-size:12px;margin-top:10px;display:none">Datos incorrectos</div>
+  <small>
+   <b>Cuentas :</b><br>
+   admin@seora.edu / admin123<br>
+   lider@seora.edu / lider2026<br>
+   apellido.nombre@seora.edu / seora2026 <br>
+  </small>
+  <div id="login-error">Correo o contraseña incorrectos.</div>
  </div>
 </div>
 
 <header>
  <div class="top">
-  <div class="crest" style="padding:0; overflow:hidden; background:white;">
-  <img src="logo.png" style="width:100%; height:100%; object-fit:cover;">
-  </div>
+  <div class="crest"><img src="logo.png" alt="Escudo SEORA"></div>
   <div class="brand">
    <small>SEORYEON ARTS HIGH SCHOOL</small>
    <h1>SEORA · STUDENT PORTAL</h1>
@@ -77,51 +101,757 @@ footer{text-align:center;color:#78879a;font-size:11px;padding:25px}
 </header>
 
 <main>
- <div class="notice"><strong>Portal ficticio de CLAN-X.</strong> Sitio de utilería creado para una obra de ficción. No representa a una institución educativa real.</div>
- <div id="home">
-  <div class="welcome"><h2>Panel del estudiante</h2><p id="welcome-text">Selecciona una sección para consultar su contenido.</p></div>
-  <div class="grid">
-   <button class="tile" onclick="openPanel('perfil')"><span class="icon">♙</span><strong>Perfil estudiantil</strong><small>Identificación del estudiante</small></button>
-   <button class="tile" onclick="openPanel('academico')"><span class="icon">▤</span><strong>Información académica</strong><small>Programa y especialidad</small></button>
-   <button class="tile" onclick="openPanel('horario')"><span class="icon">◷</span><strong>Horario de clases</strong><small>Organización semanal</small></button>
-   <button class="tile" onclick="openPanel('actividades')"><span class="icon">✧</span><strong>Actividades artísticas</strong><small>Eventos y presentaciones</small></button>
-   <button class="tile" onclick="openPanel('asistencia')"><span class="icon">✓</span><strong>Asistencia</strong><small>Registro del estudiante</small></button>
-   <button class="tile" onclick="openPanel('residencia')"><span class="icon">⌂</span><strong>Residencia</strong><small>Información de alojamiento</small></button>
+ <div class="notice">
+  <strong>Portal ficticio de CLAN-X.</strong>
+  Sitio de utilería creado para una obra de ficción. No representa a una institución educativa real.
+ </div>
+
+ <div id="session-bar" class="session-bar" style="display:none">
+  <span id="session-info"></span>
+  <button onclick="logout()">Cerrar sesión</button>
+ </div>
+
+ <div id="home" style="display:none">
+  <div class="welcome">
+   <h2 id="welcome-title"></h2>
+   <p id="welcome-text"></p>
+  </div>
+
+  <!-- MÓDULOS PARA ESTUDIANTES -->
+  <div class="grid" id="student-menu">
+   <button class="tile" onclick="openPanel('perfil')">
+    <span class="icon">♙</span><strong>Perfil estudiantil</strong>
+    <small>Identificación del estudiante</small>
+   </button>
+   <button class="tile" onclick="openPanel('academico')">
+    <span class="icon">▤</span><strong>Información académica</strong>
+    <small>Programa y especialidad</small>
+   </button>
+   <button class="tile" onclick="openPanel('horario')">
+    <span class="icon">◷</span><strong>Horario de clases</strong>
+    <small>Organización semanal</small>
+   </button>
+   <button class="tile" onclick="openPanel('actividades')">
+    <span class="icon">✧</span><strong>Actividades artísticas</strong>
+    <small>Eventos y presentaciones</small>
+   </button>
+   <button class="tile" onclick="openPanel('asistencia')">
+    <span class="icon">✓</span><strong>Asistencia</strong>
+    <small>Registro personal</small>
+   </button>
+   <button class="tile" onclick="openPanel('residencia')">
+    <span class="icon">⌂</span><strong>Residencia</strong>
+    <small>Información de alojamiento</small>
+   </button>
+  </div>
+
+  <!-- MÓDULOS PARA ADMINISTRACIÓN Y DIRECCIÓN -->
+  <div class="grid" id="staff-menu" style="display:none">
+   <button class="tile" onclick="openPanel('gestion')">
+    <span class="icon">⚙</span><strong>Directorio estudiantil</strong>
+    <small>Consultar perfiles y horarios</small>
+   </button>
+   <button class="tile" onclick="openPanel('control-asistencia')">
+    <span class="icon">✓</span><strong>Control de asistencia</strong>
+    <small>Registrar y consultar asistencias</small>
+   </button>
+   <button class="tile" onclick="openPanel('horarios-admin')">
+    <span class="icon">◷</span><strong>Gestión de horarios</strong>
+    <small>Editar horarios de estudiantes</small>
+   </button>
   </div>
  </div>
 
+ <!-- PERFIL ESTUDIANTIL -->
  <section class="panel" id="perfil">
   <h2>Perfil estudiantil</h2>
-  <div class="data"><small>Nombre</small><strong>Park Min-soo</strong></div>
-  <div class="data"><small>Número estudiantil</small><strong>SEORA-PMS-0847</strong></div>
-  <div class="data"><small>Edad</small><strong>16 años</strong></div>
-  <div class="data"><small>Curso</small><strong>Primer año</strong></div>
-  <div class="data"><small>Especialidad</small><strong>Música</strong></div>
-  <div class="data"><small>Estado</small><strong>Matriculado · 2026</strong></div>
+  <div id="profile-content"></div>
   <button class="back" onclick="goHome()">← Volver al inicio</button>
  </section>
- <section class="panel" id="academico"><h2>Información académica</h2><div class="data"><small>Programa</small><strong>Formación artística</strong></div><div class="data"><small>Nivel</small><strong>Primer año</strong></div><div class="data"><small>Especialidad</small><strong>Música</strong></div><div class="data"><small>Año académico</small><strong>2026</strong></div><button class="back" onclick="goHome()">← Volver al inicio</button></section>
- <section class="panel" id="horario"><h2>Horario de clases</h2>El horario individual está pendiente de asignación por Coordinación Académica.<button class="back" onclick="goHome()">← Volver al inicio</button></section>
- <section class="panel" id="actividades"><h2>Actividades artísticas</h2><div class="data">Festival artístico anual</div><div class="data">Semana cultural</div><div class="data">Presentaciones y colaboraciones</div><div class="data">Talleres artísticos</div><button class="back" onclick="goHome()">← Volver al inicio</button></section>
- <section class="panel" id="asistencia"><h2>Asistencia</h2><p>El registro individual de asistencia aparecerá en esta sección.</p><button class="back" onclick="goHome()">← Volver al inicio</button></section>
- <section class="panel" id="residencia"><h2>Residencia</h2><p>La información de alojamiento y asignación de habitación será incorporada por Administración de Residencias.</p><button class="back" onclick="goHome()">← Volver al inicio</button></section>
+
+ <section class="panel" id="academico">
+  <h2>Información académica</h2>
+  <div id="academic-content"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <section class="panel" id="horario">
+  <h2>Horario de clases</h2>
+  <div id="schedule-content"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <section class="panel" id="actividades">
+  <h2>Actividades artísticas</h2>
+  <div class="data">Festival artístico anual</div>
+  <div class="data">Semana cultural</div>
+  <div class="data">Presentaciones y colaboraciones</div>
+  <div class="data">Talleres artísticos</div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <section class="panel" id="asistencia">
+  <h2>Mi asistencia</h2>
+  <div id="attendance-content"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <section class="panel" id="residencia">
+  <h2>Residencia</h2>
+  <div id="residence-content"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <!-- DIRECTORIO -->
+ <section class="panel" id="gestion">
+  <h2 id="management-title">Directorio estudiantil</h2>
+  <p id="management-description"></p>
+  <div id="student-list"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <!-- CONTROL DE ASISTENCIA -->
+ <section class="panel" id="control-asistencia">
+  <h2>Control de asistencia</h2>
+  <p>Registro general de estudiantes de SEORA.</p>
+  <label for="attendance-date">Fecha del registro</label>
+  <input class="field" type="date" id="attendance-date" onchange="renderStaffAttendance()">
+  <div id="staff-attendance-list"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <!-- GESTIÓN DE HORARIOS -->
+ <section class="panel" id="horarios-admin">
+  <h2>Gestión de horarios</h2>
+  <p>Selecciona un estudiante para modificar su horario.</p>
+  <div id="schedule-list"></div>
+  <button class="back" onclick="goHome()">← Volver al inicio</button>
+ </section>
+
+ <section class="panel" id="student-edit">
+  <h2>Editar horario</h2>
+  <div id="edit-student-name"></div>
+  <label for="schedule-input">Horario del estudiante</label>
+  <textarea class="field" id="schedule-input" placeholder="Ejemplo: Lunes: 08:00 - 09:30 Música"></textarea>
+  <button class="action primary" onclick="saveSchedule()">Guardar cambios</button>
+  <button class="back" onclick="openPanel('horarios-admin')">← Volver a horarios</button>
+ </section>
+
+ <section class="panel" id="student-details">
+  <h2>Ficha del estudiante</h2>
+  <div id="details-content"></div>
+  <button class="back" onclick="openPanel('gestion')">← Volver al directorio</button>
+ </section>
 </main>
 
-<footer>SEORA · SEORYEON ARTS HIGH SCHOOL<br>Portal ficticio de utilería · CLAN-X</footer>
+<footer>
+ SEORA · SEORYEON ARTS HIGH SCHOOL<br>
+ Portal ficticio de utilería · CLAN-X
+</footer>
 
 <script>
+
+// ====================================
+// ESTUDIANTES PRINCIPALES
+// SIEMPRE APARECEN PRIMERO EN EL LISTADO
+// ====================================
+
+const students = {
+
+ "park.minsoo@seora.edu":{
+  name:"Park Min-soo",nickname:"Haku",
+  number:"SEORA-PMS-0847",
+  age:16,year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "lee.mike@seora.edu":{
+  name:"Mike Lee",nickname:"Tiger",
+  number:"SEORA-ML-0848",
+  age:17,year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "kim.nickolas@seora.edu":{
+  name:"Nickolas Kim",nickname:"Dragon",
+  number:"SEORA-NK-0849",
+  age:15,year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "lim.noah@seora.edu":{
+  name:"Noah Lim",nickname:"Ciervo",
+  number:"SEORA-NL-0850",
+  age:16,year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "osumi.chiyoko@seora.edu":{
+  name:"Chiyoko Osumi",nickname:"Neko",
+  number:"SEORA-CO-0851",
+  age:16,year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ // ====================================
+ // ESTUDIANTES SECUNDARIOS FICTICIOS
+ // ====================================
+
+ "kang.yejun@seora.edu":{
+  name:"Kang Yejun",nickname:"YJ",
+  number:"SEORA-KY-0852",
+  age:17,year:"Segundo año",specialty:"Danza",
+  residence:"Residencia estudiantil",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "seo.ara@seora.edu":{
+  name:"Seo Ara",nickname:"Ari",
+  number:"SEORA-SA-0853",
+  age:16,year:"Primer año",specialty:"Actuación",
+  residence:"Residencia estudiantil",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "han.doyun@seora.edu":{
+  name:"Han Doyun",nickname:"D.O",
+  number:"SEORA-HD-0854",
+  age:18,year:"Tercer año",specialty:"Composición Musical",
+  residence:"Residencia estudiantil",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "choi.minji@seora.edu":{
+  name:"Choi Minji",nickname:"Mimi",
+  number:"SEORA-CM-0855",
+  age:15,year:"Primer año",specialty:"Artes Visuales",
+  residence:"Residencia estudiantil",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "yoon.haru@seora.edu":{
+  name:"Yoon Haru",nickname:"Haru",
+  number:"SEORA-YH-0856",
+  age:17,year:"Segundo año",specialty:"Producción Audiovisual",
+  residence:"Residencia estudiantil",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "bae.sora@seora.edu":{
+  name:"Bae Sora",nickname:"Sora",
+  number:"SEORA-BS-0857",
+  age:16,year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "jung.iseul@seora.edu":{
+  name:"Jung Iseul",nickname:"Ise",
+  number:"SEORA-JI-0858",
+  age:18,year:"Tercer año",specialty:"Diseño Escénico",
+  residence:"Residencia estudiantil",
+  schedule:"Horario pendiente de asignación"
+ },
+
+ "kwon.taemin@seora.edu":{
+  name:"Kwon Taemin",nickname:"Tae",
+  number:"SEORA-KT-0859",
+  age:19,year:"Quinto año",specialty:"Actuación",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"Horario pendiente de asignación"
+ }
+};
+
+// ====================================
+// CUENTAS INSTITUCIONALES
+// ====================================
+
+const accounts = {
+ "admin@seora.edu":{
+  password:"admin123",
+  role:"admin",
+  name:"Administración"
+ },
+ "lider@seora.edu":{
+  password:"lider2026",
+  role:"director",
+  name:"Dirección"
+ }
+};
+
+Object.keys(students).forEach(email=>{
+ accounts[email]={
+  password:"seora2026",
+  role:"student",
+  name:students[email].name
+ };
+});
+
+// ====================================
+// SESIÓN
+// ====================================
+
+let currentEmail="";
+let editingEmail="";
+
 function login(){
- const e=document.getElementById('email').value.trim().toLowerCase();
- const p=document.getElementById('pass').value.trim();
- if((e==='admin@seora.edu'&&p==='admin123')||(e==='park.minsoo@seora.edu'&&p==='seora2026')){
-  document.getElementById('login-screen').style.display='none';
-  document.getElementById('welcome-text').innerText='Sesión: '+e;
- } else {
-  document.getElementById('login-error').style.display='block';
+
+ const email=document.getElementById("email").value.trim().toLowerCase();
+ const password=document.getElementById("pass").value.trim();
+ const account=accounts[email];
+ const error=document.getElementById("login-error");
+
+ if(!account || account.password!==password){
+  error.style.display="block";
+  return;
+ }
+
+ currentEmail=email;
+ error.style.display="none";
+
+ document.getElementById("login-screen").style.display="none";
+ document.getElementById("home").style.display="block";
+ document.getElementById("session-bar").style.display="flex";
+
+ document.getElementById("session-info").innerText=
+  account.name+" · "+email;
+
+ const isStudent=account.role==="student";
+
+ document.getElementById("student-menu").style.display=
+  isStudent?"grid":"none";
+
+ document.getElementById("staff-menu").style.display=
+  isStudent?"none":"grid";
+
+ document.getElementById("welcome-title").innerText=
+  account.role==="director"?"Panel de Dirección":
+  account.role==="admin"?"Panel de Administración":
+  "Panel del estudiante";
+
+ document.getElementById("welcome-text").innerText=
+  isStudent
+  ?"Bienvenido/a, "+account.name
+  :"Sesión institucional: "+account.name;
+
+ if(isStudent)renderProfile();
+
+ goHome();
+}
+
+function logout(){
+
+ currentEmail="";
+
+ document.getElementById("home").style.display="none";
+ document.getElementById("session-bar").style.display="none";
+
+ document.querySelectorAll(".panel").forEach(p=>
+  p.classList.remove("active")
+ );
+
+ document.getElementById("login-screen").style.display="grid";
+ document.getElementById("email").value="";
+ document.getElementById("pass").value="";
+}
+
+// ====================================
+// PERMISOS
+// ====================================
+
+function isStaff(){
+ const role=accounts[currentEmail]?.role;
+ return role==="admin" || role==="director";
+}
+
+function isStudent(){
+ return accounts[currentEmail]?.role==="student";
+}
+
+function openPanel(id){
+
+ if(!currentEmail)return;
+
+ const studentPanels=[
+  "perfil","academico","horario",
+  "actividades","asistencia","residencia"
+ ];
+
+ const staffPanels=[
+  "gestion","control-asistencia",
+  "horarios-admin","student-edit","student-details"
+ ];
+
+ if(studentPanels.includes(id) && !isStudent()){
+  alert("Este módulo es exclusivo para estudiantes.");
+  return;
+ }
+
+ if(staffPanels.includes(id) && !isStaff()){
+  alert("No tienes permisos para acceder.");
+  return;
+ }
+
+ document.getElementById("home").style.display="none";
+
+ document.querySelectorAll(".panel").forEach(p=>
+  p.classList.remove("active")
+ );
+
+ document.getElementById(id).classList.add("active");
+
+ if(id==="gestion")renderManagement();
+ if(id==="control-asistencia")renderStaffAttendance();
+ if(id==="horarios-admin")renderScheduleList();
+
+ window.scrollTo(0,0);
+}
+
+function goHome(){
+
+ document.querySelectorAll(".panel").forEach(p=>
+  p.classList.remove("active")
+ );
+
+ document.getElementById("home").style.display="block";
+ window.scrollTo(0,0);
+}
+
+// ====================================
+// PERFIL DEL ESTUDIANTE
+// ====================================
+
+function renderProfile(){
+
+ if(!isStudent())return;
+
+ const student=students[currentEmail];
+ if(!student)return;
+
+ const fields=[
+  ["Nombre completo",student.name],
+  ["Apodo",student.nickname],
+  ["Número estudiantil",student.number],
+  ["Correo institucional",currentEmail],
+  ["Edad",student.age+" años"],
+  ["Curso",student.year],
+  ["Especialidad",student.specialty],
+  ["Estado","Matriculado · 2026"]
+ ];
+
+ document.getElementById("profile-content").innerHTML=
+  fields.map(([label,value])=>
+   `<div class="data"><small>${label}</small><strong>${value}</strong></div>`
+  ).join("");
+
+ document.getElementById("academic-content").innerHTML=`
+  <div class="data"><small>Programa</small><strong>Formación artística</strong></div>
+  <div class="data"><small>Nivel</small><strong>${student.year}</strong></div>
+  <div class="data"><small>Especialidad</small><strong>${student.specialty}</strong></div>
+  <div class="data"><small>Año académico</small><strong>2026</strong></div>`;
+
+ document.getElementById("schedule-content").innerHTML=
+  `<div class="data">${student.schedule}</div>`;
+
+ renderStudentAttendance();
+
+ document.getElementById("residence-content").innerHTML=`
+  <div class="data"><small>Modalidad</small><strong>${student.residence}</strong></div>`;
+}
+
+// ====================================
+// DIRECTORIO DE ESTUDIANTES
+// ====================================
+
+function renderManagement(){
+
+ if(!isStaff())return;
+
+ const role=accounts[currentEmail].role;
+
+ document.getElementById("management-title").innerText=
+  role==="director"?"Directorio institucional":"Directorio estudiantil";
+
+ document.getElementById("management-description").innerText=
+  role==="director"
+  ?"Acceso de dirección: consulta general de estudiantes."
+  :"Acceso administrativo: consulta de estudiantes y gestión académica.";
+
+ document.getElementById("student-list").innerHTML=
+  Object.entries(students).map(([email,s],index)=>`
+   <div class="student-item">
+    <strong>${index+1}. ${s.name} (${s.nickname})</strong><br>
+    <small>${s.number} · ${s.year} · ${s.specialty}</small><br>
+    <small>${email}</small><br>
+    <button class="action" onclick="viewStudent('${email}')">
+     Ver ficha
+    </button>
+    <button class="action primary" onclick="editSchedule('${email}')">
+     Editar horario
+    </button>
+    <button class="action" onclick="goToAttendance('${email}')">
+     Asistencia
+    </button>
+   </div>
+  `).join("");
+}
+
+function viewStudent(email){
+
+ if(!isStaff())return;
+
+ const s=students[email];
+ if(!s)return;
+
+ document.getElementById("details-content").innerHTML=`
+  <div class="data"><small>Nombre</small><strong>${s.name}</strong></div>
+  <div class="data"><small>Apodo</small><strong>${s.nickname}</strong></div>
+  <div class="data"><small>Matrícula</small><strong>${s.number}</strong></div>
+  <div class="data"><small>Edad</small><strong>${s.age} años</strong></div>
+  <div class="data"><small>Correo</small><strong>${email}</strong></div>
+  <div class="data"><small>Curso</small><strong>${s.year}</strong></div>
+  <div class="data"><small>Especialidad</small><strong>${s.specialty}</strong></div>
+  <div class="data"><small>Residencia</small><strong>${s.residence}</strong></div>
+  <div class="data"><small>Horario</small><strong>${s.schedule}</strong></div>
+ `;
+
+ openPanel("student-details");
+}
+
+// ====================================
+// EDICIÓN DE HORARIOS
+// ====================================
+
+function renderScheduleList(){
+
+ if(!isStaff())return;
+
+ document.getElementById("schedule-list").innerHTML=
+  Object.entries(students).map(([email,s])=>`
+   <div class="student-item">
+    <strong>${s.name}</strong><br>
+    <small>${s.number}</small><br>
+    <small>${s.schedule}</small><br>
+    <button class="action primary" onclick="editSchedule('${email}')">
+     Modificar horario
+    </button>
+   </div>
+  `).join("");
+}
+
+function editSchedule(email){
+
+ if(!isStaff())return;
+
+ editingEmail=email;
+
+ document.getElementById("edit-student-name").innerText=
+  students[email].name+" · "+students[email].number;
+
+ document.getElementById("schedule-input").value=
+  students[email].schedule;
+
+ openPanel("student-edit");
+}
+
+function saveSchedule(){
+
+ if(!isStaff() || !editingEmail)return;
+
+ students[editingEmail].schedule=
+  document.getElementById("schedule-input").value.trim()||
+  "Horario pendiente de asignación";
+
+ alert("Horario actualizado en esta sesión de prueba.");
+
+ openPanel("horarios-admin");
+}
+
+// ====================================
+// ASISTENCIA
+// ====================================
+
+let attendanceRecords={};
+
+try{
+ attendanceRecords=JSON.parse(
+  localStorage.getItem("seoraAttendance")||"{}"
+ );
+}catch(error){
+ attendanceRecords={};
+}
+
+function saveAttendanceData(){
+ localStorage.setItem(
+  "seoraAttendance",
+  JSON.stringify(attendanceRecords)
+ );
+}
+
+function getToday(){
+
+ const today=new Date();
+
+ return [
+  today.getFullYear(),
+  String(today.getMonth()+1).padStart(2,"0"),
+  String(today.getDate()).padStart(2,"0")
+ ].join("-");
+}
+
+function statusClass(status){
+
+ if(status==="Presente")return "present";
+ if(status==="Ausente")return "absent";
+ if(status==="Atrasado")return "late";
+
+ return "pending";
+}
+
+// Asistencia personal del estudiante
+function renderStudentAttendance(){
+
+ if(!isStudent())return;
+
+ const records=attendanceRecords[currentEmail]||[];
+
+ if(records.length===0){
+  document.getElementById("attendance-content").innerHTML=
+   "<p>Aún no existen registros de asistencia.</p>";
+  return;
+ }
+
+ document.getElementById("attendance-content").innerHTML=
+  records.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(record=>`
+   <div class="data">
+    <small>${record.date}</small>
+    <span class="status ${statusClass(record.status)}">
+     ${record.status}
+    </span>
+   </div>
+  `).join("");
+}
+
+// Panel de administración: lista general
+function renderStaffAttendance(){
+
+ if(!isStaff())return;
+
+ const dateInput=document.getElementById("attendance-date");
+
+ if(!dateInput.value){
+  dateInput.value=getToday();
+ }
+
+ const date=dateInput.value;
+
+ document.getElementById("staff-attendance-list").innerHTML=
+  Object.entries(students).map(([email,s])=>{
+
+   const record=(attendanceRecords[email]||[])
+    .find(r=>r.date===date);
+
+   const currentStatus=record?record.status:"";
+
+   return `
+    <div class="attendance-row">
+     <strong>${s.name} (${s.nickname})</strong><br>
+     <small>${s.number}</small>
+
+     <select class="field" id="status-${email}">
+      <option value="" ${currentStatus===""?"selected":""}>
+       Sin registrar
+      </option>
+      <option value="Presente" ${currentStatus==="Presente"?"selected":""}>
+       Presente
+      </option>
+      <option value="Ausente" ${currentStatus==="Ausente"?"selected":""}>
+       Ausente
+      </option>
+      <option value="Atrasado" ${currentStatus==="Atrasado"?"selected":""}>
+       Atrasado
+      </option>
+     </select>
+
+     <button class="action primary"
+      onclick="saveAttendance('${email}')">
+      Guardar registro
+     </button>
+
+     <span class="status ${statusClass(currentStatus)}">
+      ${currentStatus||"Pendiente"}
+     </span>
+    </div>
+   `;
+  }).join("");
+}
+
+function saveAttendance(email){
+
+ if(!isStaff())return;
+
+ const date=document.getElementById("attendance-date").value;
+ const select=document.getElementById("status-"+email);
+
+ if(!date){
+  alert("Selecciona una fecha.");
+  return;
+ }
+
+ const status=select.value;
+
+ if(!status){
+  alert("Selecciona un estado de asistencia.");
+  return;
+ }
+
+ if(!attendanceRecords[email]){
+  attendanceRecords[email]=[];
+ }
+
+ const existing=attendanceRecords[email].find(
+  record=>record.date===date
+ );
+
+ if(existing){
+  existing.status=status;
+ }else{
+  attendanceRecords[email].push({
+   date:date,
+   status:status
+  });
+ }
+
+ saveAttendanceData();
+
+ alert("Asistencia guardada correctamente.");
+ renderStaffAttendance();
+}
+
+function goToAttendance(email){
+
+ if(!isStaff())return;
+
+ openPanel("control-asistencia");
+
+ const dateInput=document.getElementById("attendance-date");
+ if(!dateInput.value)dateInput.value=getToday();
+
+ renderStaffAttendance();
+
+ // Desplazamiento hacia el estudiante seleccionado
+ const element=document.getElementById("status-"+email);
+ if(element){
+  element.scrollIntoView({behavior:"smooth",block:"center"});
+  element.focus();
  }
 }
-function openPanel(id){document.getElementById('home').style.display='none';document.querySelectorAll('.panel').forEach(p=>{p.classList.remove('active')});document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
-function goHome(){document.querySelectorAll('.panel').forEach(p=>{p.classList.remove('active')});document.getElementById('home').style.display='block';window.scrollTo(0,0)}
+
 </script>
 </body>
 </html>
