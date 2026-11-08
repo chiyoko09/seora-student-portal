@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,150 +5,60 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b1730">
 <title>SEORA | Student Portal</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- background:#edf2f8;
- color:#172943;
- font-family:Arial,Helvetica,sans-serif;
-}
-header{
- background:linear-gradient(135deg,#09152c,#1c3b64);
- color:white;
- padding:30px 18px;
- border-bottom:4px solid #9bbbdc;
-}
-.top{
- max-width:950px;
- margin:auto;
- display:flex;
- align-items:center;
- gap:15px;
-}
-.crest{
- width:58px;height:58px;
- border:1px solid #b9cee5;
- border-radius:12px;
- display:grid;
- place-items:center;
- font-size:30px;
- color:#dcecff;
-}
-.brand small{
- letter-spacing:3px;
- color:#bdcfe3;
- font-size:10px;
-}
-.brand h1{
- margin:6px 0 0;
- font-size:23px;
-}
-.hero{
- max-width:950px;
- margin:28px auto 0;
-}
+body{margin:0;background:#edf2f8;color:#172943;font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(135deg,#09152c,#1c3b64);color:white;padding:30px 18px;border-bottom:4px solid #9bbbdc}
+.top{max-width:950px;margin:auto;display:flex;align-items:center;gap:15px}
+.crest{width:58px;height:58px;border:1px solid #b9cee5;border-radius:12px;display:grid;place-items:center;font-size:30px;color:#dcecff}
+.brand small{letter-spacing:3px;color:#bdcfe3;font-size:10px}
+.brand h1{margin:6px 0 0;font-size:23px}
+.hero{max-width:950px;margin:28px auto 0}
 .hero h2{font-size:32px;margin:8px 0}
 .hero p{color:#d0deee;font-size:14px}
-main{
- max-width:950px;
- margin:25px auto;
- padding:0 17px;
-}
-.notice{
- background:white;
- border-left:4px solid #7199c3;
- border-radius:8px;
- padding:13px;
- font-size:12px;
- line-height:1.5;
- color:#56677d;
-}
-.welcome{
- margin:25px 0 16px;
-}
+main{max-width:950px;margin:25px auto;padding:0 17px}
+.notice{background:white;border-left:4px solid #7199c3;border-radius:8px;padding:13px;font-size:12px;line-height:1.5;color:#56677d}
+.welcome{margin:25px 0 16px}
 .welcome h2{font-size:21px;margin-bottom:5px}
 .welcome p{color:#697b91;font-size:13px}
-.grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:13px;
-}
-.tile{
- background:white;
- border:1px solid #d7e1ed;
- border-radius:12px;
- padding:19px;
- min-height:125px;
- text-align:left;
- color:#183454;
- cursor:pointer;
- transition:.2s;
-}
-.tile:hover{
- background:#e3edf8;
- transform:translateY(-2px);
-}
-.tile .icon{
- font-size:24px;
- display:block;
- margin-bottom:10px;
-}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.tile{background:white;border:1px solid #d7e1ed;border-radius:12px;padding:19px;min-height:125px;text-align:left;color:#183454;cursor:pointer;transition:.2s}
+.tile:hover{background:#e3edf8;transform:translateY(-2px)}
+.tile .icon{font-size:24px;display:block;margin-bottom:10px}
 .tile strong{font-size:14px}
-.tile small{
- display:block;
- color:#718198;
- margin-top:7px;
- line-height:1.4;
-}
-.panel{
- display:none;
- background:white;
- padding:22px;
- border:1px solid #d7e1ed;
- border-radius:12px;
- margin-top:20px;
- line-height:1.7;
-}
+.tile small{display:block;color:#718198;margin-top:7px;line-height:1.4}
+.panel{display:none;background:white;padding:22px;border:1px solid #d7e1ed;border-radius:12px;margin-top:20px;line-height:1.7}
 .panel.active{display:block}
 .panel h2{color:#17385f}
-.back{
- background:#e7eff8;
- border:0;
- padding:11px 16px;
- border-radius:8px;
- color:#254c76;
- cursor:pointer;
- margin-top:20px;
-}
-.data{
- background:#f2f6fb;
- border-radius:8px;
- padding:12px;
- margin:9px 0;
-}
-.data small{
- display:block;
- color:#718198;
- font-size:10px;
- text-transform:uppercase;
- letter-spacing:1px;
-}
+.back{background:#e7eff8;border:0;padding:11px 16px;border-radius:8px;color:#254c76;cursor:pointer;margin-top:20px}
+.data{background:#f2f6fb;border-radius:8px;padding:12px;margin:9px 0}
+.data small{display:block;color:#718198;font-size:10px;text-transform:uppercase;letter-spacing:1px}
 .data strong{font-size:14px}
-footer{
- text-align:center;
- color:#78879a;
- font-size:11px;
- padding:25px;
-}
-@media(min-width:650px){
- .grid{grid-template-columns:repeat(3,1fr)}
-}
+footer{text-align:center;color:#78879a;font-size:11px;padding:25px}
+/* LOGIN */
+#login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#09152c,#1c3b64);display:grid;place-items:center;z-index:9999;padding:18px}
+.login-box{background:white;width:100%;max-width:380px;border-radius:16px;padding:28px;border:1px solid #d7e1ed}
+.login-box h2{margin:0 0 6px;color:#0b1730}
+.login-box p{margin:0 0 18px;color:#697b91;font-size:13px}
+.login-box input{width:100%;padding:12px;border-radius:8px;border:1px solid #d7e1ed;margin:7px 0;background:#f8fafd}
+.login-box button{width:100%;padding:12px;border-radius:8px;border:0;background:#17385f;color:white;font-weight:bold;cursor:pointer;margin-top:12px}
+.login-box small{display:block;margin-top:12px;color:#9aa8bb;font-size:11px;line-height:1.4}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
-
 <body>
+
+<div id="login-screen">
+ <div class="login-box">
+  <h2>SEORA LOGIN</h2>
+  <p>Ingresa con tu correo institucional</p>
+  <input id="email" placeholder="Email">
+  <input id="pass" type="password" placeholder="Contraseña">
+  <button onclick="login()">Entrar</button>
+  <small><b>Prueba:</b><br>admin@seora.edu / admin123<br>park.minsoo@seora.edu / seora2026</small>
+  <div id="login-error" style="color:#c0392b;font-size:12px;margin-top:10px;display:none">Datos incorrectos</div>
+ </div>
+</div>
 
 <header>
  <div class="top">
@@ -159,7 +68,6 @@ footer{
    <h1>SEORA · STUDENT PORTAL</h1>
   </div>
  </div>
-
  <div class="hero">
   <h2>Bienvenido a SEORA</h2>
   <p>«El arte nos distingue, la excelencia nos define».</p>
@@ -167,57 +75,16 @@ footer{
 </header>
 
 <main>
-
- <div class="notice">
-  <strong>Portal ficticio de CLAN-X.</strong>
-  Sitio de utilería creado para una obra de ficción.
-  No representa a una institución educativa real.
- </div>
-
+ <div class="notice"><strong>Portal ficticio de CLAN-X.</strong> Sitio de utilería creado para una obra de ficción. No representa a una institución educativa real.</div>
  <div id="home">
-  <div class="welcome">
-   <h2>Panel del estudiante</h2>
-   <p>Selecciona una sección para consultar su contenido.</p>
-  </div>
-
+  <div class="welcome"><h2>Panel del estudiante</h2><p id="welcome-text">Selecciona una sección para consultar su contenido.</p></div>
   <div class="grid">
-
-   <button class="tile" onclick="openPanel('perfil')">
-    <span class="icon">♙</span>
-    <strong>Perfil estudiantil</strong>
-    <small>Identificación del estudiante</small>
-   </button>
-
-   <button class="tile" onclick="openPanel('academico')">
-    <span class="icon">▤</span>
-    <strong>Información académica</strong>
-    <small>Programa y especialidad</small>
-   </button>
-
-   <button class="tile" onclick="openPanel('horario')">
-    <span class="icon">◷</span>
-    <strong>Horario de clases</strong>
-    <small>Organización semanal</small>
-   </button>
-
-   <button class="tile" onclick="openPanel('actividades')">
-    <span class="icon">✧</span>
-    <strong>Actividades artísticas</strong>
-    <small>Eventos y presentaciones</small>
-   </button>
-
-   <button class="tile" onclick="openPanel('asistencia')">
-    <span class="icon">✓</span>
-    <strong>Asistencia</strong>
-    <small>Registro del estudiante</small>
-   </button>
-
-   <button class="tile" onclick="openPanel('residencia')">
-    <span class="icon">⌂</span>
-    <strong>Residencia</strong>
-    <small>Información de alojamiento</small>
-   </button>
-
+   <button class="tile" onclick="openPanel('perfil')"><span class="icon">♙</span><strong>Perfil estudiantil</strong><small>Identificación del estudiante</small></button>
+   <button class="tile" onclick="openPanel('academico')"><span class="icon">▤</span><strong>Información académica</strong><small>Programa y especialidad</small></button>
+   <button class="tile" onclick="openPanel('horario')"><span class="icon">◷</span><strong>Horario de clases</strong><small>Organización semanal</small></button>
+   <button class="tile" onclick="openPanel('actividades')"><span class="icon">✧</span><strong>Actividades artísticas</strong><small>Eventos y presentaciones</small></button>
+   <button class="tile" onclick="openPanel('asistencia')"><span class="icon">✓</span><strong>Asistencia</strong><small>Registro del estudiante</small></button>
+   <button class="tile" onclick="openPanel('residencia')"><span class="icon">⌂</span><strong>Residencia</strong><small>Información de alojamiento</small></button>
   </div>
  </div>
 
@@ -231,69 +98,28 @@ footer{
   <div class="data"><small>Estado</small><strong>Matriculado · 2026</strong></div>
   <button class="back" onclick="goHome()">← Volver al inicio</button>
  </section>
-
- <section class="panel" id="academico">
-  <h2>Información académica</h2>
-  <div class="data"><small>Programa</small><strong>Formación artística</strong></div>
-  <div class="data"><small>Nivel</small><strong>Primer año</strong></div>
-  <div class="data"><small>Especialidad</small><strong>Música</strong></div>
-  <div class="data"><small>Año académico</small><strong>2026</strong></div>
-  <button class="back" onclick="goHome()">← Volver al inicio</button>
- </section>
-
- <section class="panel" id="horario">
-  <h2>Horario de clases</h2>
-  El horario individual está pendiente de asignación por Coordinación Académica.
-  <button class="back" onclick="goHome()">← Volver al inicio</button>
- </section>
-
- <section class="panel" id="actividades">
-  <h2>Actividades artísticas</h2>
-  <div class="data">Festival artístico anual</div>
-  <div class="data">Semana cultural</div>
-  <div class="data">Presentaciones y colaboraciones</div>
-  <div class="data">Talleres artísticos</div>
-  <button class="back" onclick="goHome()">← Volver al inicio</button>
- </section>
-
- <section class="panel" id="asistencia">
-  <h2>Asistencia</h2>
-  <p>El registro individual de asistencia aparecerá en esta sección.</p>
-  <button class="back" onclick="goHome()">← Volver al inicio</button>
- </section>
-
- <section class="panel" id="residencia">
-  <h2>Residencia</h2>
-  <p>La información de alojamiento y asignación de habitación será incorporada por Administración de Residencias.</p>
-  <button class="back" onclick="goHome()">← Volver al inicio</button>
- </section>
-
+ <section class="panel" id="academico"><h2>Información académica</h2><div class="data"><small>Programa</small><strong>Formación artística</strong></div><div class="data"><small>Nivel</small><strong>Primer año</strong></div><div class="data"><small>Especialidad</small><strong>Música</strong></div><div class="data"><small>Año académico</small><strong>2026</strong></div><button class="back" onclick="goHome()">← Volver al inicio</button></section>
+ <section class="panel" id="horario"><h2>Horario de clases</h2>El horario individual está pendiente de asignación por Coordinación Académica.<button class="back" onclick="goHome()">← Volver al inicio</button></section>
+ <section class="panel" id="actividades"><h2>Actividades artísticas</h2><div class="data">Festival artístico anual</div><div class="data">Semana cultural</div><div class="data">Presentaciones y colaboraciones</div><div class="data">Talleres artísticos</div><button class="back" onclick="goHome()">← Volver al inicio</button></section>
+ <section class="panel" id="asistencia"><h2>Asistencia</h2><p>El registro individual de asistencia aparecerá en esta sección.</p><button class="back" onclick="goHome()">← Volver al inicio</button></section>
+ <section class="panel" id="residencia"><h2>Residencia</h2><p>La información de alojamiento y asignación de habitación será incorporada por Administración de Residencias.</p><button class="back" onclick="goHome()">← Volver al inicio</button></section>
 </main>
 
-<footer>
- SEORA · SEORYEON ARTS HIGH SCHOOL<br>
- Portal ficticio de utilería · CLAN-X
-</footer>
+<footer>SEORA · SEORYEON ARTS HIGH SCHOOL<br>Portal ficticio de utilería · CLAN-X</footer>
 
 <script>
-function openPanel(id){
- document.getElementById('home').style.display='none';
- document.querySelectorAll('.panel').forEach(p=>{
-  p.classList.remove('active');
- });
- document.getElementById(id).classList.add('active');
- window.scrollTo(0,0);
+function login(){
+ const e=document.getElementById('email').value.trim().toLowerCase();
+ const p=document.getElementById('pass').value.trim();
+ if((e==='admin@seora.edu'&&p==='admin123')||(e==='park.minsoo@seora.edu'&&p==='seora2026')){
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('welcome-text').innerText='Sesión: '+e;
+ } else {
+  document.getElementById('login-error').style.display='block';
+ }
 }
-
-function goHome(){
- document.querySelectorAll('.panel').forEach(p=>{
-  p.classList.remove('active');
- });
- document.getElementById('home').style.display='block';
- window.scrollTo(0,0);
-}
+function openPanel(id){document.getElementById('home').style.display='none';document.querySelectorAll('.panel').forEach(p=>{p.classList.remove('active')});document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function goHome(){document.querySelectorAll('.panel').forEach(p=>{p.classList.remove('active')});document.getElementById('home').style.display='block';window.scrollTo(0,0)}
 </script>
-
 </body>
-  </html>
-  
+</html>
