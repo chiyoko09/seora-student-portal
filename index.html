@@ -749,6 +749,10 @@ function saveSchedule(){
 // ASISTENCIA
 // ====================================
 
+let // ====================================
+// ASISTENCIA INICIAL · NOVIEMBRE 2026
+// ====================================
+
 let attendanceRecords={};
 
 try{
@@ -759,7 +763,74 @@ try{
  attendanceRecords={};
 }
 
+const NOVEMBER_DAYS = [
+ "2026-11-02",
+ "2026-11-03",
+ "2026-11-04",
+ "2026-11-05",
+ "2026-11-06",
+ "2026-11-09",
+ "2026-11-10",
+ "2026-11-11",
+ "2026-11-12",
+ "2026-11-13",
+ "2026-11-16",
+ "2026-11-17",
+ "2026-11-18",
+ "2026-11-19",
+ "2026-11-20",
+ "2026-11-23",
+ "2026-11-24",
+ "2026-11-25",
+ "2026-11-26",
+ "2026-11-27",
+ "2026-11-30"
+];
+
+function initializeNovemberAttendance(){
+
+ Object.keys(students).forEach(email=>{
+
+  if(!attendanceRecords[email]){
+   attendanceRecords[email]=[];
+  }
+
+  const records=attendanceRecords[email];
+
+  if(!records.some(r=>r.date==="2026-11-02")){
+   records.push({
+    date:"2026-11-02",
+    status:"Ausente"
+   });
+  }
+
+  NOVEMBER_DAYS.forEach(date=>{
+
+   if(date==="2026-11-02")return;
+
+   if(!records.some(r=>r.date===date)){
+    records.push({
+     date:date,
+     status:"Presente"
+    });
+   }
+
+  });
+
+ });
+
+ saveAttendanceData();
+}
+
 function saveAttendanceData(){
+
+ localStorage.setItem(
+  "seoraAttendance",
+  JSON.stringify(attendanceRecords)
+ );
+}
+
+initializeNovemberAttendance();
  localStorage.setItem(
   "seoraAttendance",
   JSON.stringify(attendanceRecords)
@@ -787,7 +858,57 @@ function statusClass(status){
 }
 
 // Asistencia personal del estudiante
-function renderStudentAttendance(){
+function function renderStudentAttendance(){
+
+ if(!isStudent())return;
+
+ const records=attendanceRecords[currentEmail]||[];
+
+ const novemberRecords=records.filter(r=>
+  r.date.startsWith("2026-11")
+ );
+
+ const present=novemberRecords.filter(r=>
+  r.status==="Presente"
+ ).length;
+
+ const total=novemberRecords.length;
+
+ const percentage=total?
+  Math.round((present/total)*100):0;
+
+ document.getElementById("attendance-content").innerHTML=`
+
+  <div class="data">
+   <small>Asistencia general · Noviembre 2026</small>
+   <strong style="font-size:27px;color:#247542">
+    ${percentage}%
+   </strong>
+  </div>
+
+  <div class="data">
+   <small>Días presentes</small>
+   <strong>${present}</strong>
+  </div>
+
+  <div class="data">
+   <small>Total de registros</small>
+   <strong>${total}</strong>
+  </div>
+
+  ${records.slice().sort((a,b)=>
+   b.date.localeCompare(a.date)
+  ).map(record=>`
+   <div class="data">
+    <small>${record.date}</small>
+    <span class="status ${statusClass(record.status)}">
+     ${record.status}
+    </span>
+   </div>
+  `).join("")}
+
+ `;
+}
 
  if(!isStudent())return;
 
