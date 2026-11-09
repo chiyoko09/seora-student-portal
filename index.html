@@ -749,7 +749,7 @@ function saveSchedule(){
 // ASISTENCIA
 // ====================================
 
-let // ====================================
+// ====================================
 // ASISTENCIA INICIAL · NOVIEMBRE 2026
 // ====================================
 
@@ -831,9 +831,6 @@ function saveAttendanceData(){
 }
 
 initializeNovemberAttendance();
- localStorage.setItem(
-  "seoraAttendance",
-  JSON.stringify(attendanceRecords)
  );
 }
 
@@ -858,12 +855,9 @@ function statusClass(status){
 }
 
 // Asistencia personal del estudiante
-function function renderStudentAttendance(){
+function renderStudentAttendance(){
 
- if(!isStudent())return;
-
- const records=attendanceRecords[currentEmail]||[];
-
+ // Panel de administración: lista general
  const novemberRecords=records.filter(r=>
   r.date.startsWith("2026-11")
  );
