@@ -1115,8 +1115,408 @@ function saveAttendance() {
 /* =========================
    ACTIVIDADES
 ========================= */
+/* =========================
+   FESTIVIDADES Y EVENTOS
+========================= */
 
 function loadActivities() {
+  const container = document.getElementById("activities-list");
+  if (!container) return;
+
+  const activities = [
+    {
+      id: "festival-cultural",
+      name: "Festival Cultural SEORA",
+      date: "18 de noviembre de 2026",
+      time: "10:00 - 17:00 horas",
+      location: "Campus principal · SEORA",
+      status: "Programado",
+      description:
+        "El Festival Cultural SEORA es una celebración institucional dedicada a reconocer, promover y compartir el talento artístico de los estudiantes. Durante esta jornada, el campus se convertirá en un espacio de encuentro donde la música, la actuación, las artes visuales y la producción audiovisual tendrán un papel protagonista.\n\nLa actividad busca fomentar la expresión individual y colectiva, permitiendo que los estudiantes presenten sus trabajos, compartan sus habilidades y conozcan las distintas disciplinas artísticas que forman parte de la comunidad SEORA.\n\nAdemás de las presentaciones, el festival pretende fortalecer la convivencia entre los diferentes cursos y especialidades, creando un ambiente de colaboración, respeto y participación. Será una oportunidad para que cada estudiante pueda descubrir nuevas formas de expresión, conocer el trabajo de sus compañeros y formar parte de una experiencia cultural común.\n\nLa jornada contará con espacios de exhibición, presentaciones preparadas por los estudiantes y actividades abiertas a la comunidad institucional. Cada participación representará el esfuerzo, la creatividad y la dedicación desarrollados durante el proceso académico.",
+
+      objectives: [
+        "Promover la creatividad y la expresión artística.",
+        "Dar visibilidad al trabajo realizado por los estudiantes.",
+        "Fomentar la convivencia entre especialidades.",
+        "Crear espacios de colaboración y participación.",
+        "Reconocer el esfuerzo y la dedicación artística."
+      ],
+
+      program: [
+        ["10:00", "Ceremonia de apertura institucional"],
+        ["10:30", "Recorrido por las exposiciones artísticas"],
+        ["11:30", "Presentaciones musicales"],
+        ["13:00", "Pausa y actividades de convivencia"],
+        ["14:00", "Exhibiciones de actuación y expresión escénica"],
+        ["15:30", "Muestras de producción audiovisual"],
+        ["16:30", "Palabras de cierre y agradecimientos"],
+        ["17:00", "Finalización de la jornada"]
+      ],
+
+      participation:
+        "Los estudiantes podrán participar como expositores, intérpretes, integrantes de presentaciones grupales o asistentes. Las presentaciones y exhibiciones deberán estar coordinadas previamente con el personal responsable de cada especialidad.",
+
+      requirements: [
+        "Respetar los horarios establecidos para cada actividad.",
+        "Mantener el orden en los espacios de exposición.",
+        "Seguir las indicaciones del personal institucional.",
+        "Cuidar los materiales y equipos utilizados durante el evento.",
+        "Mantener una actitud respetuosa hacia todas las presentaciones."
+      ],
+
+      notice:
+        "El programa presentado es de carácter informativo y puede experimentar modificaciones por motivos de organización. Cualquier cambio de horario, ubicación o actividad será comunicado mediante los avisos oficiales del portal SEORA."
+    },
+
+    {
+      id: "dia-deportivo",
+      name: "Día Deportivo SEORA",
+      date: "25 de noviembre de 2026",
+      time: "Por confirmar",
+      location: "Complejo deportivo institucional",
+      status: "Próximamente",
+      description:
+        "El Día Deportivo SEORA será una jornada dedicada a la actividad física, la cooperación y la convivencia estudiantil. Los participantes podrán formar parte de distintas actividades recreativas y competencias organizadas por la institución.\n\nEl objetivo principal será promover el compañerismo, el respeto y el trabajo en equipo, ofreciendo un espacio diferente a las actividades académicas habituales.",
+      objectives: [
+        "Fomentar el compañerismo.",
+        "Promover la participación recreativa.",
+        "Fortalecer el trabajo en equipo."
+      ],
+      program: [
+        ["09:00", "Apertura"],
+        ["10:00", "Actividades grupales"],
+        ["12:00", "Competencias recreativas"],
+        ["15:00", "Cierre"]
+      ],
+      participation:
+        "La participación estará abierta a los estudiantes, de acuerdo con las actividades organizadas.",
+      requirements: [
+        "Respetar las indicaciones de los organizadores.",
+        "Participar de manera responsable.",
+        "Cuidar las instalaciones."
+      ],
+      notice:
+        "La fecha y el programa definitivo serán publicados cuando se confirme la organización del evento."
+    },
+
+    {
+      id: "concierto-invierno",
+      name: "Concierto de Invierno",
+      date: "Fecha por confirmar",
+      time: "Por confirmar",
+      location: "Auditorio principal",
+      status: "En preparación",
+      description:
+        "El Concierto de Invierno será una presentación musical organizada para reunir a los estudiantes de las distintas especialidades en una jornada dedicada a la música y la interpretación.\n\nEl evento permitirá presentar trabajos individuales y grupales, mostrando los avances desarrollados durante el período académico. También será una oportunidad para compartir diferentes estilos musicales y experiencias artísticas.",
+      objectives: [
+        "Compartir el trabajo musical de los estudiantes.",
+        "Promover la interpretación individual y grupal.",
+        "Fomentar la colaboración entre músicos."
+      ],
+      program: [
+        ["Por confirmar", "Apertura del concierto"],
+        ["Por confirmar", "Presentaciones musicales"],
+        ["Por confirmar", "Interpretaciones grupales"],
+        ["Por confirmar", "Cierre"]
+      ],
+      participation:
+        "Los estudiantes interesados podrán participar mediante presentaciones individuales o grupales, previa coordinación con el área musical.",
+      requirements: [
+        "Confirmar la participación con anticipación.",
+        "Respetar los tiempos asignados.",
+        "Preparar los materiales necesarios."
+      ],
+      notice:
+        "La información definitiva del concierto será publicada una vez confirmados la fecha, los horarios y los participantes."
+    }
+  ];
+
+  container.innerHTML = "";
+
+  activities.forEach(activity => {
+    const card = document.createElement("div");
+    card.className = "student-card";
+
+    const title = document.createElement("h3");
+    title.textContent = activity.name;
+
+    const date = document.createElement("p");
+    date.textContent = "Fecha: " + activity.date;
+
+    const location = document.createElement("p");
+    location.textContent = "Ubicación: " + activity.location;
+
+    const status = document.createElement("p");
+    status.textContent = "Estado: " + activity.status;
+
+    const button = document.createElement("button");
+    button.textContent = "Ver detalles";
+
+    button.addEventListener("click", () => {
+      showActivityDetails(activity);
+    });
+
+    card.appendChild(title);
+    card.appendChild(date);
+    card.appendChild(location);
+    card.appendChild(status);
+    card.appendChild(button);
+
+    container.appendChild(card);
+  });
+}
+
+
+/* =========================
+   VISTA DETALLADA DEL EVENTO
+========================= */
+
+function showActivityDetails(activity) {
+  const oldModal = document.getElementById("activity-detail-modal");
+
+  if (oldModal) oldModal.remove();
+
+  const modal = document.createElement("div");
+  modal.id = "activity-detail-modal";
+
+  Object.assign(modal.style, {
+    position: "fixed",
+    inset: "0",
+    zIndex: "9999",
+    background: "rgba(5, 15, 32, 0.75)",
+    overflowY: "auto",
+    padding: "20px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "flex-start"
+  });
+
+  const content = document.createElement("div");
+
+  Object.assign(content.style, {
+    background: "#edf2f8",
+    color: "#172943",
+    width: "100%",
+    maxWidth: "760px",
+    margin: "20px auto",
+    borderRadius: "16px",
+    overflow: "hidden",
+    fontFamily: "Arial, sans-serif",
+    boxShadow: "0 15px 45px rgba(0,0,0,.25)"
+  });
+
+  const header = document.createElement("div");
+
+  Object.assign(header.style, {
+    background: "linear-gradient(135deg,#0b1730,#24466f)",
+    color: "white",
+    padding: "25px"
+  });
+
+  const institution = document.createElement("small");
+  institution.textContent = "SEORA · EVENTOS INSTITUCIONALES";
+
+  const title = document.createElement("h1");
+  title.textContent = activity.name;
+  title.style.margin = "15px 0 8px";
+
+  const status = document.createElement("span");
+  status.textContent = activity.status;
+
+  Object.assign(status.style, {
+    display: "inline-block",
+    padding: "6px 12px",
+    borderRadius: "20px",
+    background: "#ffffff22",
+    fontSize: "12px"
+  });
+
+  header.append(institution, title, status);
+
+  const body = document.createElement("div");
+  body.style.padding = "22px";
+
+  function addSection(sectionTitle, textContent) {
+    const section = document.createElement("section");
+    section.style.background = "white";
+    section.style.padding = "18px";
+    section.style.borderRadius = "12px";
+    section.style.marginBottom = "15px";
+
+    const heading = document.createElement("h3");
+    heading.textContent = sectionTitle;
+    heading.style.marginTop = "0";
+    heading.style.color = "#24466f";
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = textContent;
+    paragraph.style.whiteSpace = "pre-line";
+    paragraph.style.lineHeight = "1.7";
+    paragraph.style.color = "#526782";
+
+    section.append(heading, paragraph);
+    body.appendChild(section);
+  }
+
+  function addListSection(sectionTitle, items) {
+    const section = document.createElement("section");
+    section.style.background = "white";
+    section.style.padding = "18px";
+    section.style.borderRadius = "12px";
+    section.style.marginBottom = "15px";
+
+    const heading = document.createElement("h3");
+    heading.textContent = sectionTitle;
+    heading.style.marginTop = "0";
+    heading.style.color = "#24466f";
+
+    const list = document.createElement("ul");
+    list.style.paddingLeft = "22px";
+    list.style.lineHeight = "1.9";
+    list.style.color = "#526782";
+
+    items.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      list.appendChild(li);
+    });
+
+    section.append(heading, list);
+    body.appendChild(section);
+  }
+
+  /* INFORMACIÓN GENERAL */
+
+  const info = document.createElement("div");
+
+  Object.assign(info.style, {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
+    gap: "10px",
+    marginBottom: "15px"
+  });
+
+  [
+    ["Fecha", activity.date],
+    ["Horario", activity.time],
+    ["Ubicación", activity.location]
+  ].forEach(([label, value]) => {
+    const item = document.createElement("div");
+
+    Object.assign(item.style, {
+      background: "white",
+      padding: "14px",
+      borderRadius: "10px"
+    });
+
+    const small = document.createElement("small");
+    small.textContent = label;
+    small.style.color = "#71839b";
+
+    const strong = document.createElement("p");
+    strong.textContent = value;
+    strong.style.fontWeight = "bold";
+    strong.style.marginBottom = "0";
+
+    item.append(small, strong);
+    info.appendChild(item);
+  });
+
+  body.appendChild(info);
+
+  addSection("Descripción del evento", activity.description);
+
+  addListSection("Objetivos institucionales", activity.objectives);
+
+  /* PROGRAMA */
+
+  const programSection = document.createElement("section");
+
+  Object.assign(programSection.style, {
+    background: "white",
+    padding: "18px",
+    borderRadius: "12px",
+    marginBottom: "15px"
+  });
+
+  const programTitle = document.createElement("h3");
+  programTitle.textContent = "Programa de actividades";
+  programTitle.style.color = "#24466f";
+  programTitle.style.marginTop = "0";
+
+  programSection.appendChild(programTitle);
+
+  activity.program.forEach(([time, name]) => {
+    const row = document.createElement("div");
+
+    Object.assign(row.style, {
+      display: "flex",
+      gap: "15px",
+      padding: "12px 0",
+      borderBottom: "1px solid #e6ebf2"
+    });
+
+    const hour = document.createElement("strong");
+    hour.textContent = time;
+    hour.style.color = "#315d91";
+    hour.style.minWidth = "65px";
+
+    const eventName = document.createElement("span");
+    eventName.textContent = name;
+    eventName.style.color = "#526782";
+
+    row.append(hour, eventName);
+    programSection.appendChild(row);
+  });
+
+  body.appendChild(programSection);
+
+  addSection("Modalidad de participación", activity.participation);
+
+  addListSection("Indicaciones para los participantes", activity.requirements);
+
+  addSection("Avisos institucionales", activity.notice);
+
+  /* CIERRE */
+
+  const footer = document.createElement("div");
+
+  Object.assign(footer.style, {
+    padding: "20px",
+    background: "#ffffff",
+    textAlign: "center"
+  });
+
+  const closeButton = document.createElement("button");
+  closeButton.textContent = "Volver al calendario";
+
+  Object.assign(closeButton.style, {
+    background: "#17345a",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    padding: "13px 22px",
+    cursor: "pointer",
+    fontWeight: "bold"
+  });
+
+  closeButton.addEventListener("click", () => {
+    modal.remove();
+  });
+
+  footer.appendChild(closeButton);
+
+  content.append(header, body, footer);
+  modal.appendChild(content);
+
+  modal.addEventListener("click", event => {
+    if (event.target === modal) {
+      modal.remove();
+    }
+  });
+
+  document.body.appendChild(modal);
+     }
   const container = document.getElementById("activities-list");
   if (!container) return;
 
