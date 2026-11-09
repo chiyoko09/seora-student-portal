@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,28 +9,68 @@
 
 <style>
 *{box-sizing:border-box}
+
+:root{
+ --navy:#0b1730;
+ --blue:#203d67;
+ --light:#edf2f8;
+ --border:#dbe4ef;
+ --text:#172943;
+ --muted:#64748b;
+ --white:#fff;
+}
+
 body{
  margin:0;
- background:#edf2f8;
- color:#172943;
+ background:var(--light);
+ color:var(--text);
  font-family:Arial,Helvetica,sans-serif;
 }
+
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+
 header{
- background:linear-gradient(120deg,#0b1730,#203d67);
+ background:linear-gradient(120deg,var(--navy),var(--blue));
  color:white;
  padding:22px;
 }
-.brand{display:flex;align-items:center;gap:13px}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:13px;
+}
+
 .logo{
- width:46px;height:46px;
+ width:46px;
+ height:46px;
  border:1px solid #8ca6c7;
  border-radius:12px;
- display:grid;place-items:center;
+ display:grid;
+ place-items:center;
  font-weight:bold;
+ font-size:21px;
 }
-.brand h1{font-size:20px;margin:0;letter-spacing:2px}
-.brand p{margin:4px 0 0;color:#c7d5e8;font-size:12px}
-main{max-width:1100px;margin:28px auto;padding:0 16px 50px}
+
+.brand h1{
+ font-size:20px;
+ margin:0;
+ letter-spacing:2px;
+}
+
+.brand p{
+ margin:4px 0 0;
+ color:#c7d5e8;
+ font-size:12px;
+ letter-spacing:1px;
+}
+
+main{
+ max-width:1100px;
+ margin:28px auto;
+ padding:0 16px 50px;
+}
 
 #login-screen{
  min-height:calc(100vh - 90px);
@@ -37,110 +78,356 @@ main{max-width:1100px;margin:28px auto;padding:0 16px 50px}
  place-items:center;
  padding:25px;
 }
+
 .login-card{
  width:min(100%,430px);
  background:white;
- border:1px solid #dbe4ef;
+ border:1px solid var(--border);
  border-radius:18px;
  padding:30px;
  box-shadow:0 12px 35px #10294a12;
 }
-.login-card h2{margin:0 0 8px;color:#0b1730}
-.muted{color:#64748b;line-height:1.5}
+
+.login-card h2{margin:0 0 8px;color:var(--navy)}
+
+.muted{
+ color:var(--muted);
+ line-height:1.6;
+}
+
 .field-label{
- display:block;font-size:13px;
- font-weight:bold;margin:17px 0 7px;
+ display:block;
+ font-size:13px;
+ font-weight:bold;
+ margin:17px 0 7px;
 }
+
 .field{
- width:100%;padding:12px 13px;
+ width:100%;
+ padding:12px 13px;
  border:1px solid #cbd6e3;
- border-radius:9px;background:white;
- color:#172943;
+ border-radius:9px;
+ background:white;
+ color:var(--text);
 }
-button{cursor:pointer}
+
 .action{
  border:1px solid #cbd6e3;
- background:white;color:#0b1730;
- padding:10px 13px;border-radius:8px;
+ background:white;
+ color:var(--navy);
+ padding:10px 13px;
+ border-radius:8px;
  font-weight:bold;
 }
-.primary{background:#0b1730;border-color:#0b1730;color:white}
-.block{width:100%;margin-top:20px}
-.error{
- display:none;margin-top:14px;color:#b83232;
- font-size:13px;background:#fff1f1;
- padding:10px;border-radius:8px;
+
+.action:hover{background:#f1f5f9}
+
+.primary{
+ background:var(--navy);
+ border-color:var(--navy);
+ color:white;
 }
+
+.primary:hover{background:var(--blue)}
+
+.danger{
+ color:#a52e35;
+ border-color:#efc7ca;
+}
+
+.block{
+ width:100%;
+ margin-top:20px;
+}
+
+.error{
+ display:none;
+ margin-top:14px;
+ color:#b83232;
+ font-size:13px;
+ background:#fff1f1;
+ padding:10px;
+ border-radius:8px;
+}
+
 #session-bar{
- display:none;max-width:1100px;
- margin:18px auto 0;padding:0 16px;
- align-items:center;justify-content:space-between;
+ display:none;
+ max-width:1100px;
+ margin:18px auto 0;
+ padding:0 16px;
+ align-items:center;
+ justify-content:space-between;
  gap:12px;
 }
-#session-info{font-size:13px;color:#64748b}
-#home{display:none}
-.welcome{
- background:white;border:1px solid #dbe4ef;
- border-radius:15px;padding:24px;margin-bottom:18px;
+
+#session-info{
+ font-size:13px;
+ color:var(--muted);
 }
-.welcome h2{margin:0 0 8px;color:#0b1730}
+
+#home{display:none}
+
+.welcome{
+ background:white;
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:24px;
+ margin-bottom:18px;
+}
+
+.welcome h2{
+ margin:0 0 8px;
+ color:var(--navy);
+}
+
 .menu-grid{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
  gap:14px;
 }
+
 .menu-card{
- background:white;border:1px solid #dbe4ef;
- border-radius:13px;padding:19px;
- text-align:left;min-height:125px;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:13px;
+ padding:19px;
+ text-align:left;
+ min-height:125px;
+ transition:.15s;
 }
+
+.menu-card:hover{
+ border-color:#8ca6c7;
+ transform:translateY(-2px);
+}
+
 .menu-card strong{
- display:block;color:#0b1730;
- font-size:16px;margin-bottom:8px;
+ display:block;
+ color:var(--navy);
+ font-size:16px;
+ margin-bottom:8px;
 }
-.menu-card span{font-size:13px;color:#64748b}
+
+.menu-card span{
+ font-size:13px;
+ color:var(--muted);
+ line-height:1.5;
+}
+
 .panel{
- display:none;background:white;
- border:1px solid #dbe4ef;
- border-radius:15px;padding:23px;margin-top:18px;
+ display:none;
+ background:white;
+ border:1px solid var(--border);
+ border-radius:15px;
+ padding:23px;
+ margin-top:18px;
 }
+
 .panel.active{display:block}
+
 .panel-head{
- display:flex;align-items:center;
+ display:flex;
+ align-items:center;
  justify-content:space-between;
- gap:12px;flex-wrap:wrap;margin-bottom:18px;
+ gap:12px;
+ flex-wrap:wrap;
+ margin-bottom:18px;
 }
-.panel h2{margin:0;color:#0b1730}
+
+.panel h2{margin:0;color:var(--navy)}
+
 .grid-data{
  display:grid;
  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
  gap:12px;
 }
+
 .data{
- padding:14px;border:1px solid #dbe4ef;
- border-radius:10px;background:#fbfcfe;
+ padding:14px;
+ border:1px solid var(--border);
+ border-radius:10px;
+ background:#fbfcfe;
  overflow-wrap:anywhere;
 }
-.data small{display:block;color:#64748b;font-size:12px;margin-bottom:7px}
+
+.data small{
+ display:block;
+ color:var(--muted);
+ font-size:12px;
+ margin-bottom:7px;
+}
+
 .student-item,.attendance-row{
- border:1px solid #dbe4ef;
- border-radius:11px;padding:15px;margin:11px 0;
+ border:1px solid var(--border);
+ border-radius:11px;
+ padding:15px;
+ margin:11px 0;
 }
-.student-item small{color:#64748b;line-height:1.8}
+
+.student-item small{
+ color:var(--muted);
+ line-height:1.8;
+}
+
 .student-item button{margin:9px 6px 0 0}
+
 .status{
- display:inline-block;padding:5px 9px;
- border-radius:20px;font-size:12px;font-weight:bold;
+ display:inline-block;
+ padding:5px 9px;
+ border-radius:20px;
+ font-size:12px;
+ font-weight:bold;
 }
+
 .present{background:#e5f5e9;color:#247542}
 .absent{background:#fdeaea;color:#b83232}
 .late{background:#fff3d9;color:#8a5b00}
 .pending{background:#edf1f5;color:#64748b}
-.schedule-text{white-space:pre-wrap;line-height:1.8}
-footer{text-align:center;color:#8794a6;font-size:11px;padding:25px}
+
+.schedule-text{
+ white-space:pre-wrap;
+ line-height:1.8;
+ background:#fbfcfe;
+ border:1px solid var(--border);
+ padding:17px;
+ border-radius:10px;
+}
+
+.event-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:15px;
+}
+
+.event-card{
+ border:1px solid var(--border);
+ border-radius:13px;
+ overflow:hidden;
+ background:#fff;
+}
+
+.event-banner{
+ background:linear-gradient(130deg,#0b1730,#315783);
+ color:white;
+ padding:22px;
+ min-height:105px;
+ display:flex;
+ flex-direction:column;
+ justify-content:flex-end;
+}
+
+.event-banner small{
+ color:#c7d5e8;
+ margin-bottom:7px;
+}
+
+.event-banner h3{
+ margin:0;
+ font-size:19px;
+}
+
+.event-body{padding:17px}
+
+.event-body p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.6;
+}
+
+.event-meta{
+ font-size:12px;
+ color:#52647c;
+ line-height:1.9;
+ margin:12px 0;
+}
+
+.event-detail{
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:1000;
+ background:#071326b8;
+ padding:18px;
+ overflow-y:auto;
+}
+
+.event-detail.open{
+ display:flex;
+ align-items:flex-start;
+ justify-content:center;
+}
+
+.event-detail-box{
+ width:min(100%,700px);
+ margin:auto;
+ background:white;
+ border-radius:16px;
+ overflow:hidden;
+ box-shadow:0 20px 60px #0004;
+}
+
+.event-detail-header{
+ background:linear-gradient(130deg,#0b1730,#315783);
+ color:white;
+ padding:25px;
+}
+
+.event-detail-header h2{margin:8px 0}
+.event-detail-header p{color:#d3dfed;line-height:1.6}
+
+.event-detail-content{padding:23px}
+
+.detail-section{
+ margin-bottom:22px;
+}
+
+.detail-section h3{
+ color:var(--navy);
+ font-size:15px;
+ margin:0 0 9px;
+}
+
+.detail-section p,.detail-section li{
+ color:#52647c;
+ font-size:14px;
+ line-height:1.7;
+}
+
+.detail-section ul{padding-left:20px}
+
+.notice{
+ background:#f1f5fa;
+ border-left:4px solid #315783;
+ padding:13px;
+ border-radius:7px;
+ color:#52647c;
+ font-size:13px;
+ line-height:1.6;
+}
+
+.empty{
+ background:#f8fafc;
+ border:1px dashed #cbd6e3;
+ border-radius:10px;
+ padding:20px;
+ color:var(--muted);
+ text-align:center;
+}
+
+footer{
+ text-align:center;
+ color:#8794a6;
+ font-size:11px;
+ padding:25px;
+}
+
+.hidden{display:none!important}
+
 @media(max-width:600px){
  .login-card{padding:23px}
  .panel{padding:17px}
+ .event-detail{padding:9px}
+ .event-detail-content{padding:17px}
 }
 </style>
 </head>
@@ -199,34 +486,55 @@ footer{text-align:center;color:#8794a6;font-size:11px;padding:25px}
 
  <div id="student-menu" class="menu-grid">
   <button class="menu-card" onclick="openPanel('perfil')">
-   <strong>Mi perfil</strong><span>Datos institucionales.</span>
+   <strong>Mi perfil</strong>
+   <span>Consulta tus datos institucionales.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('academico')">
-   <strong>Información académica</strong><span>Programa y especialidad.</span>
+   <strong>Información académica</strong>
+   <span>Programa, año y especialidad.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('horario')">
-   <strong>Mi horario</strong><span>Consulta tus clases.</span>
+   <strong>Mi horario</strong>
+   <span>Consulta tus clases.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('actividades')">
-   <strong>Actividades</strong><span>Información institucional.</span>
+   <strong>Actividades</strong>
+   <span>Festividades y eventos institucionales.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('asistencia')">
-   <strong>Mi asistencia</strong><span>Consulta tus registros.</span>
+   <strong>Mi asistencia</strong>
+   <span>Consulta tus registros.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('residencia')">
-   <strong>Residencia</strong><span>Modalidad de alojamiento.</span>
+   <strong>Residencia</strong>
+   <span>Información sobre alojamiento.</span>
   </button>
  </div>
 
  <div id="staff-menu" class="menu-grid" style="display:none">
   <button class="menu-card" onclick="openPanel('gestion')">
-   <strong>Directorio estudiantil</strong><span>Fichas de estudiantes.</span>
+   <strong>Directorio estudiantil</strong>
+   <span>Consultar fichas institucionales.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('control-asistencia')">
-   <strong>Control de asistencia</strong><span>Gestionar registros.</span>
+   <strong>Control de asistencia</strong>
+   <span>Gestionar registros de estudiantes.</span>
   </button>
+
   <button class="menu-card" onclick="openPanel('horarios-admin')">
-   <strong>Gestión de horarios</strong><span>Editar horarios.</span>
+   <strong>Gestión de horarios</strong>
+   <span>Consultar y editar horarios.</span>
+  </button>
+
+  <button class="menu-card" onclick="openPanel('actividades')">
+   <strong>Actividades institucionales</strong>
+   <span>Consultar eventos y festividades.</span>
   </button>
  </div>
 </section>
@@ -260,7 +568,12 @@ footer{text-align:center;color:#8794a6;font-size:11px;padding:25px}
   <h2>Actividades institucionales</h2>
   <button class="action" onclick="goHome()">Volver</button>
  </div>
- <p>Las actividades se anunciarán próximamente.</p>
+
+ <p class="muted">
+  Consulta las festividades, eventos y actividades organizadas por SEORA.
+ </p>
+
+ <div id="activities-list" class="event-grid"></div>
 </section>
 
 <section id="asistencia" class="panel">
@@ -281,10 +594,10 @@ footer{text-align:center;color:#8794a6;font-size:11px;padding:25px}
 
 <section id="gestion" class="panel">
  <div class="panel-head">
-  <h2 id="management-title">Directorio estudiantil</h2>
+  <h2>Directorio estudiantil</h2>
   <button class="action" onclick="goHome()">Volver</button>
  </div>
- <p id="management-description" class="muted"></p>
+ <p class="muted">Directorio institucional de estudiantes registrados.</p>
  <div id="student-list"></div>
 </section>
 
@@ -309,8 +622,8 @@ footer{text-align:center;color:#8794a6;font-size:11px;padding:25px}
   <h2>Editar horario</h2>
   <button class="action" onclick="openPanel('horarios-admin')">Volver</button>
  </div>
- <p id="edit-student-name"></p>
- <textarea id="schedule-input" class="field" rows="12"></textarea>
+ <p id="edit-student-name" class="muted"></p>
+ <textarea id="schedule-input" class="field" rows="15"></textarea>
  <button class="action primary block" onclick="saveSchedule()">Guardar horario</button>
 </section>
 
@@ -319,14 +632,37 @@ footer{text-align:center;color:#8794a6;font-size:11px;padding:25px}
   <h2>Control de asistencia</h2>
   <button class="action" onclick="goHome()">Volver</button>
  </div>
- <label class="field-label" for="attendance-date">Fecha</label>
- <input class="field" id="attendance-date" type="date" onchange="renderStaffAttendance()">
+
+ <label class="field-label" for="attendance-date">Fecha de registro</label>
+ <input class="field" id="attendance-date" type="date"
+  onchange="renderStaffAttendance()">
+
  <div id="staff-attendance-list"></div>
 </section>
 
 <footer>SEORA · Student Portal</footer>
+
 </main>
- <script>
+
+<div id="event-modal" class="event-detail"
+ onclick="closeEventOutside(event)">
+ <div class="event-detail-box">
+  <div class="event-detail-header">
+   <button class="action" onclick="closeEvent()"
+    style="float:right">Cerrar ✕</button>
+   <small id="event-modal-category">EVENTO INSTITUCIONAL</small>
+   <h2 id="event-modal-title"></h2>
+   <p id="event-modal-date"></p>
+  </div>
+  <div class="event-detail-content" id="event-modal-content"></div>
+ </div>
+</div>
+
+<script>
+/* =====================================
+   DATOS INSTITUCIONALES
+===================================== */
+
 const horarioMusica = `
 LUNES
 09:00 - 10:30 | Técnica vocal
@@ -355,1242 +691,823 @@ VIERNES
 `;
 
 const students = {
-  "park.minsoo@seora.edu": {
-    name: "Park Min-soo",
-    nickname: "Haku",
-    number: "SEORA-PMS-0847",
-    age: 16,
-    year: "Primer año",
-    specialty: "Música",
-    residence: "Domicilio particular con sus tutores",
-    schedule: horarioMusica
-  },
+ "park.minsoo@seora.edu":{
+  name:"Park Min-soo",nickname:"Haku",
+  number:"SEORA-PMS-0847",age:16,
+  year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:horarioMusica
+ },
 
-  "lee.mike@seora.edu": {
-    name: "Mike Lee",
-    nickname: "Tiger",
-    number: "SEORA-ML-0848",
-    age: 17,
-    year: "Primer año",
-    specialty: "Música",
-    residence: "Domicilio particular con sus tutores",
-    schedule: horarioMusica
-  },
+ "lee.mike@seora.edu":{
+  name:"Mike Lee",nickname:"Tiger",
+  number:"SEORA-ML-0848",age:17,
+  year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:horarioMusica
+ },
 
-  "kim.nickolas@seora.edu": {
-    name: "Nickolas Kim",
-    nickname: "Dragon",
-    number: "SEORA-NK-0849",
-    age: 15,
-    year: "Primer año",
-    specialty: "Música",
-    residence: "Domicilio particular con sus tutores",
-    schedule: horarioMusica
-  },
+ "kim.nickolas@seora.edu":{
+  name:"Nickolas Kim",nickname:"Dragon",
+  number:"SEORA-NK-0849",age:15,
+  year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:horarioMusica
+ },
 
-  "lim.noah@seora.edu": {
-    name: "Noah Lim",
-    nickname: "Ciervo",
-    number: "SEORA-NL-0850",
-    age: 16,
-    year: "Primer año",
-    specialty: "Música",
-    residence: "Domicilio particular con sus tutores",
-    schedule: horarioMusica
-  },
+ "lim.noah@seora.edu":{
+  name:"Noah Lim",nickname:"Ciervo",
+  number:"SEORA-NL-0850",age:16,
+  year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:horarioMusica
+ },
 
-  "osumi.chiyoko@seora.edu": {
-    name: "Chiyoko Osumi",
-    nickname: "Neko",
-    number: "SEORA-CO-0851",
-    age: 16,
-    year: "Primer año",
-    specialty: "Música",
-    residence: "Domicilio particular con sus tutores",
-    schedule: horarioMusica
-  },
+ "osumi.chiyoko@seora.edu":{
+  name:"Chiyoko Osumi",nickname:"Neko",
+  number:"SEORA-CO-0851",age:16,
+  year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:horarioMusica
+ },
 
-  "kang.yejun@seora.edu": {
-    name: "Kang Yejun",
-    nickname: "YJ",
-    number: "SEORA-KY-0852",
-    age: 17,
-    year: "Segundo año",
-    specialty: "Danza",
-    residence: "Residencia estudiantil",
-    schedule: `
-LUNES
-09:00 - 10:30 | Danza contemporánea
-10:45 - 12:15 | Preparación física
-14:00 - 15:30 | Técnica clásica
+ "kang.yejun@seora.edu":{
+  name:"Kang Yejun",nickname:"YJ",
+  number:"SEORA-KY-0852",age:17,
+  year:"Segundo año",specialty:"Danza",
+  residence:"Residencia estudiantil",
+  schedule:"LUNES\n09:00 - 10:30 | Danza contemporánea\n10:45 - 12:15 | Preparación física\n14:00 - 15:30 | Técnica clásica\n\nMARTES\n09:00 - 10:30 | Expresión corporal\n10:45 - 12:15 | Coreografía\n14:00 - 15:30 | Práctica grupal\n\nMIÉRCOLES\n09:00 - 10:30 | Danza contemporánea\n10:45 - 12:15 | Historia de la danza\n14:00 - 15:30 | Técnica clásica\n\nJUEVES\n09:00 - 10:30 | Coreografía\n10:45 - 12:15 | Preparación física\n14:00 - 15:30 | Práctica individual\n\nVIERNES\n09:00 - 10:30 | Expresión corporal\n10:45 - 12:15 | Repertorio\n14:00 - 15:00 | Tutoría"
+ },
 
-MARTES
-09:00 - 10:30 | Expresión corporal
-10:45 - 12:15 | Coreografía
-14:00 - 15:30 | Práctica grupal
+ "seo.ara@seora.edu":{
+  name:"Seo Ara",nickname:"Ari",
+  number:"SEORA-SA-0853",age:16,
+  year:"Primer año",specialty:"Actuación",
+  residence:"Residencia estudiantil",
+  schedule:"LUNES\n09:00 - 10:30 | Expresión escénica\n10:45 - 12:15 | Improvisación\n14:00 - 15:30 | Interpretación\n\nMARTES\n09:00 - 10:30 | Voz y dicción\n10:45 - 12:15 | Historia del teatro\n14:00 - 15:30 | Taller de escenas\n\nMIÉRCOLES\n09:00 - 10:30 | Expresión escénica\n10:45 - 12:15 | Movimiento\n14:00 - 15:30 | Interpretación\n\nJUEVES\n09:00 - 10:30 | Improvisación\n10:45 - 12:15 | Voz y dicción\n14:00 - 15:30 | Taller de escenas\n\nVIERNES\n09:00 - 10:30 | Historia del teatro\n10:45 - 12:15 | Práctica escénica\n14:00 - 15:00 | Tutoría"
+ },
 
-MIÉRCOLES
-09:00 - 10:30 | Danza contemporánea
-10:45 - 12:15 | Historia de la danza
-14:00 - 15:30 | Técnica clásica
+ "han.doyun@seora.edu":{
+  name:"Han Doyun",nickname:"D.O",
+  number:"SEORA-HD-0854",age:18,
+  year:"Tercer año",specialty:"Composición Musical",
+  residence:"Residencia estudiantil",
+  schedule:"LUNES\n09:00 - 10:30 | Armonía avanzada\n10:45 - 12:15 | Composición\n14:00 - 15:30 | Producción musical\n\nMARTES\n09:00 - 10:30 | Piano\n10:45 - 12:15 | Análisis musical\n14:00 - 15:30 | Laboratorio sonoro\n\nMIÉRCOLES\n09:00 - 10:30 | Composición\n10:45 - 12:15 | Arreglos\n14:00 - 15:30 | Producción musical\n\nJUEVES\n09:00 - 10:30 | Armonía avanzada\n10:45 - 12:15 | Piano\n14:00 - 15:30 | Proyecto personal\n\nVIERNES\n09:00 - 10:30 | Análisis musical\n10:45 - 12:15 | Arreglos\n14:00 - 15:00 | Tutoría"
+ },
 
-JUEVES
-09:00 - 10:30 | Coreografía
-10:45 - 12:15 | Preparación física
-14:00 - 15:30 | Práctica individual
+ "choi.minji@seora.edu":{
+  name:"Choi Minji",nickname:"Mimi",
+  number:"SEORA-CM-0855",age:15,
+  year:"Primer año",specialty:"Artes Visuales",
+  residence:"Residencia estudiantil",
+  schedule:"LUNES\n09:00 - 10:30 | Dibujo artístico\n10:45 - 12:15 | Teoría del color\n14:00 - 15:30 | Ilustración\n\nMARTES\n09:00 - 10:30 | Historia del arte\n10:45 - 12:15 | Pintura\n14:00 - 15:30 | Diseño experimental\n\nMIÉRCOLES\n09:00 - 10:30 | Dibujo artístico\n10:45 - 12:15 | Ilustración\n14:00 - 15:30 | Taller creativo\n\nJUEVES\n09:00 - 10:30 | Teoría del color\n10:45 - 12:15 | Pintura\n14:00 - 15:30 | Diseño experimental\n\nVIERNES\n09:00 - 10:30 | Historia del arte\n10:45 - 12:15 | Portafolio\n14:00 - 15:00 | Tutoría"
+ },
 
-VIERNES
-09:00 - 10:30 | Expresión corporal
-10:45 - 12:15 | Repertorio
-14:00 - 15:00 | Tutoría
-`
-  },
+ "yoon.haru@seora.edu":{
+  name:"Yoon Haru",nickname:"Haru",
+  number:"SEORA-YH-0856",age:17,
+  year:"Segundo año",specialty:"Producción Audiovisual",
+  residence:"Residencia estudiantil",
+  schedule:"LUNES\n09:00 - 10:30 | Lenguaje audiovisual\n10:45 - 12:15 | Fotografía\n14:00 - 15:30 | Edición\n\nMARTES\n09:00 - 10:30 | Guion\n10:45 - 12:15 | Dirección\n14:00 - 15:30 | Producción\n\nMIÉRCOLES\n09:00 - 10:30 | Fotografía\n10:45 - 12:15 | Edición\n14:00 - 15:30 | Taller audiovisual\n\nJUEVES\n09:00 - 10:30 | Lenguaje audiovisual\n10:45 - 12:15 | Guion\n14:00 - 15:30 | Dirección\n\nVIERNES\n09:00 - 10:30 | Producción\n10:45 - 12:15 | Proyecto grupal\n14:00 - 15:00 | Tutoría"
+ },
 
-  "seo.ara@seora.edu": {
-    name: "Seo Ara",
-    nickname: "Ari",
-    number: "SEORA-SA-0853",
-    age: 16,
-    year: "Primer año",
-    specialty: "Actuación",
-    residence: "Residencia estudiantil",
-    schedule: `
-LUNES
-09:00 - 10:30 | Expresión escénica
-10:45 - 12:15 | Improvisación
-14:00 - 15:30 | Interpretación
+ "bae.sora@seora.edu":{
+  name:"Bae Sora",nickname:"Sora",
+  number:"SEORA-BS-0857",age:16,
+  year:"Primer año",specialty:"Música",
+  residence:"Domicilio particular con sus tutores",
+  schedule:horarioMusica
+ },
 
-MARTES
-09:00 - 10:30 | Voz y dicción
-10:45 - 12:15 | Historia del teatro
-14:00 - 15:30 | Taller de escenas
+ "jung.iseul@seora.edu":{
+  name:"Jung Iseul",nickname:"Ise",
+  number:"SEORA-JI-0858",age:18,
+  year:"Tercer año",specialty:"Diseño Escénico",
+  residence:"Residencia estudiantil",
+  schedule:"LUNES\n09:00 - 10:30 | Diseño de escenarios\n10:45 - 12:15 | Dibujo técnico\n14:00 - 15:30 | Maquetas\n\nMARTES\n09:00 - 10:30 | Iluminación escénica\n10:45 - 12:15 | Materiales\n14:00 - 15:30 | Diseño digital\n\nMIÉRCOLES\n09:00 - 10:30 | Diseño de escenarios\n10:45 - 12:15 | Maquetas\n14:00 - 15:30 | Taller práctico\n\nJUEVES\n09:00 - 10:30 | Dibujo técnico\n10:45 - 12:15 | Iluminación escénica\n14:00 - 15:30 | Diseño digital\n\nVIERNES\n09:00 - 10:30 | Materiales\n10:45 - 12:15 | Proyecto escénico\n14:00 - 15:00 | Tutoría"
+ },
 
-MIÉRCOLES
-09:00 - 10:30 | Expresión escénica
-10:45 - 12:15 | Movimiento
-14:00 - 15:30 | Interpretación
-
-JUEVES
-09:00 - 10:30 | Improvisación
-10:45 - 12:15 | Voz y dicción
-14:00 - 15:30 | Taller de escenas
-
-VIERNES
-09:00 - 10:30 | Historia del teatro
-10:45 - 12:15 | Práctica escénica
-14:00 - 15:00 | Tutoría
-`
-  },
-
-  "han.doyun@seora.edu": {
-    name: "Han Doyun",
-    nickname: "D.O",
-    number: "SEORA-HD-0854",
-    age: 18,
-    year: "Tercer año",
-    specialty: "Composición Musical",
-    residence: "Residencia estudiantil",
-    schedule: `
-LUNES
-09:00 - 10:30 | Armonía avanzada
-10:45 - 12:15 | Composición
-14:00 - 15:30 | Producción musical
-
-MARTES
-09:00 - 10:30 | Piano
-10:45 - 12:15 | Análisis musical
-14:00 - 15:30 | Laboratorio sonoro
-
-MIÉRCOLES
-09:00 - 10:30 | Composición
-10:45 - 12:15 | Arreglos
-14:00 - 15:30 | Producción musical
-
-JUEVES
-09:00 - 10:30 | Armonía avanzada
-10:45 - 12:15 | Piano
-14:00 - 15:30 | Proyecto personal
-
-VIERNES
-09:00 - 10:30 | Análisis musical
-10:45 - 12:15 | Arreglos
-14:00 - 15:00 | Tutoría
-`
-  },
-
-  "choi.minji@seora.edu": {
-    name: "Choi Minji",
-    nickname: "Mimi",
-    number: "SEORA-CM-0855",
-    age: 15,
-    year: "Primer año",
-    specialty: "Artes Visuales",
-    residence: "Residencia estudiantil",
-    schedule: `
-LUNES
-09:00 - 10:30 | Dibujo artístico
-10:45 - 12:15 | Teoría del color
-14:00 - 15:30 | Ilustración
-
-MARTES
-09:00 - 10:30 | Historia del arte
-10:45 - 12:15 | Pintura
-14:00 - 15:30 | Diseño experimental
-
-MIÉRCOLES
-09:00 - 10:30 | Dibujo artístico
-10:45 - 12:15 | Ilustración
-14:00 - 15:30 | Taller creativo
-
-JUEVES
-09:00 - 10:30 | Teoría del color
-10:45 - 12:15 | Pintura
-14:00 - 15:30 | Diseño experimental
-
-VIERNES
-09:00 - 10:30 | Historia del arte
-10:45 - 12:15 | Portafolio
-14:00 - 15:00 | Tutoría
-`
-  },
-
-  "yoon.haru@seora.edu": {
-    name: "Yoon Haru",
-    nickname: "Haru",
-    number: "SEORA-YH-0856",
-    age: 17,
-    year: "Segundo año",
-    specialty: "Producción Audiovisual",
-    residence: "Residencia estudiantil",
-    schedule: `
-LUNES
-09:00 - 10:30 | Lenguaje audiovisual
-10:45 - 12:15 | Fotografía
-14:00 - 15:30 | Edición
-
-MARTES
-09:00 - 10:30 | Guion
-10:45 - 12:15 | Dirección
-14:00 - 15:30 | Producción
-
-MIÉRCOLES
-09:00 - 10:30 | Fotografía
-10:45 - 12:15 | Edición
-14:00 - 15:30 | Taller audiovisual
-
-JUEVES
-09:00 - 10:30 | Lenguaje audiovisual
-10:45 - 12:15 | Guion
-14:00 - 15:30 | Dirección
-
-VIERNES
-09:00 - 10:30 | Producción
-10:45 - 12:15 | Proyecto grupal
-14:00 - 15:00 | Tutoría
-`
-  },
-
-  "bae.sora@seora.edu": {
-    name: "Bae Sora",
-    nickname: "Sora",
-    number: "SEORA-BS-0857",
-    age: 16,
-    year: "Primer año",
-    specialty: "Música",
-    residence: "Domicilio particular con sus tutores",
-    schedule: horarioMusica
-  },
-
-  "jung.iseul@seora.edu": {
-    name: "Jung Iseul",
-    nickname: "Ise",
-    number: "SEORA-JI-0858",
-    age: 18,
-    year: "Tercer año",
-    specialty: "Diseño Escénico",
-    residence: "Residencia estudiantil",
-    schedule: `
-LUNES
-09:00 - 10:30 | Diseño de escenarios
-10:45 - 12:15 | Dibujo técnico
-14:00 - 15:30 | Maquetas
-
-MARTES
-09:00 - 10:30 | Iluminación escénica
-10:45 - 12:15 | Materiales
-14:00 - 15:30 | Diseño digital
-
-MIÉRCOLES
-09:00 - 10:30 | Diseño de escenarios
-10:45 - 12:15 | Maquetas
-14:00 - 15:30 | Taller práctico
-
-JUEVES
-09:00 - 10:30 | Dibujo técnico
-10:45 - 12:15 | Iluminación escénica
-14:00 - 15:30 | Diseño digital
-
-VIERNES
-09:00 - 10:30 | Materiales
-10:45 - 12:15 | Proyecto escénico
-14:00 - 15:00 | Tutoría
-`
-  },
-
-  "kwon.taemin@seora.edu": {
-    name: "Kwon Taemin",
-    nickname: "Tae",
-    number: "SEORA-KT-0859",
-    age: 19,
-    year: "Quinto año",
-    specialty: "Actuación",
-    residence: "Domicilio particular con sus tutores",
-    schedule: `
-LUNES
-09:00 - 10:30 | Interpretación avanzada
-10:45 - 12:15 | Dirección de actores
-14:00 - 15:30 | Ensayo escénico
-
-MARTES
-09:00 - 10:30 | Voz profesional
-10:45 - 12:15 | Análisis de guion
-14:00 - 15:30 | Proyecto final
-
-MIÉRCOLES
-09:00 - 10:30 | Interpretación avanzada
-10:45 - 12:15 | Movimiento escénico
-14:00 - 15:30 | Ensayo escénico
-
-JUEVES
-09:00 - 10:30 | Dirección de actores
-10:45 - 12:15 | Voz profesional
-14:00 - 15:30 | Proyecto final
-
-VIERNES
-09:00 - 10:30 | Análisis de guion
-10:45 - 12:15 | Práctica profesional
-14:00 - 15:00 | Tutoría
-`
-  }
+ "kwon.taemin@seora.edu":{
+  name:"Kwon Taemin",nickname:"Tae",
+  number:"SEORA-KT-0859",age:19,
+  year:"Quinto año",specialty:"Actuación",
+  residence:"Domicilio particular con sus tutores",
+  schedule:"LUNES\n09:00 - 10:30 | Interpretación avanzada\n10:45 - 12:15 | Dirección de actores\n14:00 - 15:30 | Ensayo escénico\n\nMARTES\n09:00 - 10:30 | Voz profesional\n10:45 - 12:15 | Análisis de guion\n14:00 - 15:30 | Proyecto final\n\nMIÉRCOLES\n09:00 - 10:30 | Interpretación avanzada\n10:45 - 12:15 | Movimiento escénico\n14:00 - 15:30 | Ensayo escénico\n\nJUEVES\n09:00 - 10:30 | Dirección de actores\n10:45 - 12:15 | Voz profesional\n14:00 - 15:30 | Proyecto final\n\nVIERNES\n09:00 - 10:30 | Análisis de guion\n10:45 - 12:15 | Práctica profesional\n14:00 - 15:00 | Tutoría"
+ }
 };
+
+/* =====================================
+   CUENTAS
+===================================== */
 
 const accounts = {
-  "admin@seora.edu": {
-    password: "admin123",
-    role: "admin",
-    name: "Administración"
-  },
+ "admin@seora.edu":{
+  password:"admin123",
+  role:"admin",
+  name:"Administración"
+ },
 
-  "lider@seora.edu": {
-    password: "lider2026",
-    role: "director",
-    name: "Dirección"
-  }
+ "lider@seora.edu":{
+  password:"lider2026",
+  role:"director",
+  name:"Dirección"
+ }
 };
 
-Object.entries(students).forEach(([email, student]) => {
-  accounts[email] = {
-    password: "seora2026",
-    role: "student",
-    name: student.name,
-    studentEmail: email
-  };
+Object.entries(students).forEach(([email,student])=>{
+ accounts[email]={
+  password:"seora2026",
+  role:"student",
+  name:student.name,
+  studentEmail:email
+ };
 });
 
-let currentUser = null;
-let currentStudentEmail = null;
-let selectedStudentEmail = null;
+let currentUser=null;
+let currentStudentEmail=null;
+let selectedStudentEmail=null;
 
-const attendanceStorageKey = "seora_attendance_v1";
+/* =====================================
+   ALMACENAMIENTO LOCAL
+===================================== */
 
-function getAttendanceData() {
-  try {
-    const saved = localStorage.getItem(attendanceStorageKey);
-    return saved ? JSON.parse(saved) : {};
-  } catch (error) {
-    return {};
-  }
+const attendanceStorageKey="seora_attendance_v2";
+const scheduleStorageKey="seora_schedules_v1";
+
+function readStorage(key,fallback){
+ try{
+  const saved=localStorage.getItem(key);
+  return saved?JSON.parse(saved):fallback;
+ }catch(error){
+  return fallback;
+ }
 }
 
-let attendanceData = getAttendanceData();
+let attendanceData=readStorage(attendanceStorageKey,{});
+let savedSchedules=readStorage(scheduleStorageKey,{});
 
-function saveAttendanceData() {
-  try {
-    localStorage.setItem(
-      attendanceStorageKey,
-      JSON.stringify(attendanceData)
-    );
-    return true;
-  } catch (error) {
-    alert("No se pudieron guardar los cambios en este navegador.");
-    return false;
-  }
+Object.keys(students).forEach(email=>{
+ if(savedSchedules[email]){
+  students[email].schedule=savedSchedules[email];
+ }
+});
+
+function saveAttendanceData(){
+ try{
+  localStorage.setItem(
+   attendanceStorageKey,
+   JSON.stringify(attendanceData)
+  );
+  return true;
+ }catch(error){
+  alert("No se pudieron guardar los cambios.");
+  return false;
+ }
 }
-   </script>
-   <script>
-/* =========================
+
+function saveSchedules(){
+ try{
+  localStorage.setItem(
+   scheduleStorageKey,
+   JSON.stringify(savedSchedules)
+  );
+  return true;
+ }catch(error){
+  alert("No se pudo guardar el horario.");
+  return false;
+ }
+}
+
+/* =====================================
+   ACTIVIDADES INSTITUCIONALES
+===================================== */
+
+const activities=[
+ {
+  id:"festival-cultural",
+  title:"Festival Cultural SEORA",
+  category:"Festival institucional",
+  date:"20 de noviembre de 2026",
+  time:"10:00 a 18:00 horas",
+  location:"Auditorio principal y patio central",
+  status:"Próximamente",
+  description:"El Festival Cultural SEORA es una jornada dedicada a celebrar la creatividad, el talento y la diversidad artística de nuestra comunidad estudiantil. Durante el encuentro, los estudiantes podrán compartir sus proyectos y presentaciones en un ambiente de colaboración y expresión.",
+  objectives:[
+   "Promover la expresión artística y cultural.",
+   "Fortalecer la convivencia entre estudiantes.",
+   "Dar visibilidad a los proyectos de las distintas especialidades.",
+   "Crear un espacio de intercambio creativo."
+  ],
+  program:[
+   "10:00 — Apertura institucional.",
+   "10:30 — Exposición de artes visuales.",
+   "12:00 — Presentaciones musicales.",
+   "14:00 — Muestras de actuación.",
+   "15:30 — Exhibición audiovisual.",
+   "17:30 — Cierre y agradecimientos."
+  ],
+  participation:"La participación está abierta a todos los estudiantes de SEORA. Quienes deseen presentar un proyecto deberán coordinar previamente con su área académica.",
+  requirements:[
+   "Contar con matrícula institucional vigente.",
+   "Respetar los horarios de presentación.",
+   "Mantener el orden de los espacios.",
+   "Seguir las indicaciones del personal organizador."
+  ],
+  notice:"El programa puede experimentar modificaciones. Cualquier actualización será publicada en este apartado."
+ },
+ {
+  id:"dia-deportivo",
+  title:"Día Deportivo SEORA",
+  category:"Actividad recreativa",
+  date:"4 de diciembre de 2026",
+  time:"09:00 a 16:00 horas",
+  location:"Complejo deportivo institucional",
+  status:"Próximamente",
+  description:"Una jornada recreativa destinada a promover el compañerismo, la participación y el bienestar de la comunidad estudiantil mediante actividades deportivas y dinámicas grupales.",
+  objectives:[
+   "Fomentar la convivencia entre especialidades.",
+   "Promover el trabajo en equipo.",
+   "Incentivar la participación recreativa."
+  ],
+  program:[
+   "09:00 — Bienvenida.",
+   "09:30 — Actividades grupales.",
+   "11:00 — Encuentros deportivos.",
+   "13:00 — Pausa de almuerzo.",
+   "14:00 — Juegos recreativos.",
+   "15:30 — Cierre de actividades."
+  ],
+  participation:"La actividad está dirigida a estudiantes de todos los niveles. La inscripción de equipos se realizará mediante coordinación académica.",
+  requirements:[
+   "Ropa cómoda.",
+   "Llegar puntualmente.",
+   "Respetar las indicaciones del personal."
+  ],
+  notice:"Las actividades específicas serán confirmadas por la organización."
+ },
+ {
+  id:"concierto-invierno",
+  title:"Concierto de Invierno",
+  category:"Presentación artística",
+  date:"18 de diciembre de 2026",
+  time:"17:00 a 20:00 horas",
+  location:"Auditorio principal",
+  status:"Próximamente",
+  description:"Presentación musical de cierre de temporada en la que los estudiantes de música y otras áreas artísticas podrán compartir sus trabajos y experiencias desarrolladas durante el período académico.",
+  objectives:[
+   "Exponer el trabajo artístico de los estudiantes.",
+   "Reconocer el esfuerzo de los participantes.",
+   "Cerrar el período con una actividad comunitaria."
+  ],
+  program:[
+   "17:00 — Apertura de puertas.",
+   "17:30 — Presentaciones individuales.",
+   "18:30 — Ensambles musicales.",
+   "19:30 — Presentación final.",
+   "20:00 — Cierre."
+  ],
+  participation:"Los estudiantes interesados en participar deberán comunicarse con el área de Música para coordinar su presentación.",
+  requirements:[
+   "Confirmar participación previamente.",
+   "Entregar el repertorio con anticipación.",
+   "Respetar los horarios asignados."
+  ],
+  notice:"El acceso y los detalles de asistencia serán comunicados por SEORA."
+ }
+];
+
+function escapeHTML(value){
+ return String(value??"").replace(/[&<>"']/g,char=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[char]));
+}
+
+function loadActivities(){
+ const container=document.getElementById("activities-list");
+
+ container.innerHTML=activities.map(activity=>`
+  <article class="event-card">
+   <div class="event-banner">
+    <small>${escapeHTML(activity.category)}</small>
+    <h3>${escapeHTML(activity.title)}</h3>
+   </div>
+
+   <div class="event-body">
+    <div class="event-meta">
+     <strong>Fecha:</strong> ${escapeHTML(activity.date)}<br>
+     <strong>Horario:</strong> ${escapeHTML(activity.time)}<br>
+     <strong>Lugar:</strong> ${escapeHTML(activity.location)}<br>
+     <strong>Estado:</strong> ${escapeHTML(activity.status)}
+    </div>
+
+    <p>${escapeHTML(activity.description.substring(0,125))}...</p>
+
+    <button class="action primary"
+     onclick="showActivityDetails('${activity.id}')">
+     Ver detalles
+    </button>
+   </div>
+  </article>
+ `).join("");
+}
+
+function showActivityDetails(activityId){
+ const activity=activities.find(item=>item.id===activityId);
+ if(!activity)return;
+
+ document.getElementById("event-modal-category").textContent=
+  activity.category;
+
+ document.getElementById("event-modal-title").textContent=
+  activity.title;
+
+ document.getElementById("event-modal-date").textContent=
+  activity.date+" · "+activity.time;
+
+ const content=document.getElementById("event-modal-content");
+
+ content.innerHTML=`
+  <div class="detail-section">
+   <h3>Información general</h3>
+   <p><strong>Ubicación:</strong> ${escapeHTML(activity.location)}</p>
+   <p><strong>Estado:</strong> ${escapeHTML(activity.status)}</p>
+  </div>
+
+  <div class="detail-section">
+   <h3>Descripción del evento</h3>
+   <p>${escapeHTML(activity.description)}</p>
+  </div>
+
+  <div class="detail-section">
+   <h3>Objetivos</h3>
+   <ul>${activity.objectives.map(item=>`<li>${escapeHTML(item)}</li>`).join("")}</ul>
+  </div>
+
+  <div class="detail-section">
+   <h3>Programa de actividades</h3>
+   <ul>${activity.program.map(item=>`<li>${escapeHTML(item)}</li>`).join("")}</ul>
+  </div>
+
+  <div class="detail-section">
+   <h3>Participación</h3>
+   <p>${escapeHTML(activity.participation)}</p>
+  </div>
+
+  <div class="detail-section">
+   <h3>Requisitos e indicaciones</h3>
+   <ul>${activity.requirements.map(item=>`<li>${escapeHTML(item)}</li>`).join("")}</ul>
+  </div>
+
+  <div class="notice">
+   <strong>Comunicado institucional:</strong><br>
+   ${escapeHTML(activity.notice)}
+  </div>
+ `;
+
+ document.getElementById("event-modal").classList.add("open");
+}
+
+function closeEvent(){
+ document.getElementById("event-modal").classList.remove("open");
+}
+
+function closeEventOutside(event){
+ if(event.target.id==="event-modal"){
+  closeEvent();
+ }
+}
+
+/* =====================================
    INICIO DE SESIÓN
-========================= */
+===================================== */
 
-const loginScreen = document.getElementById("login-screen");
-const homeScreen = document.getElementById("home-screen");
-const sessionBar = document.getElementById("session-bar");
+const loginScreen=document.getElementById("login-screen");
+const homeScreen=document.getElementById("home");
+const sessionBar=document.getElementById("session-bar");
 
-document.getElementById("login-form").addEventListener("submit", function(event) {
-  event.preventDefault();
-  login();
+document.getElementById("login-form").addEventListener("submit",event=>{
+ event.preventDefault();
+ login();
 });
 
-function login() {
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const password = document.getElementById("pass").value;
+function login(){
+ const email=document.getElementById("email").value.trim().toLowerCase();
+ const password=document.getElementById("pass").value;
+ const account=accounts[email];
+ const error=document.getElementById("login-error");
 
-  const account = accounts[email];
+ if(!account||account.password!==password){
+  error.style.display="block";
+  return;
+ }
 
-  if (!account || account.password !== password) {
-    alert("Correo o contraseña incorrectos.");
-    return;
-  }
+ error.style.display="none";
 
-  currentUser = account;
-  currentStudentEmail = account.studentEmail || null;
+ currentUser=account;
+ currentStudentEmail=account.studentEmail||null;
+ selectedStudentEmail=null;
 
-  loginScreen.style.display = "none";
-  homeScreen.style.display = "block";
-  sessionBar.style.display = "flex";
+ loginScreen.style.display="none";
+ homeScreen.style.display="block";
+ sessionBar.style.display="flex";
 
-  document.getElementById("session-name").textContent = account.name;
-  document.getElementById("welcome-name").textContent = account.name;
+ document.getElementById("session-info").textContent=
+  "Sesión iniciada: "+account.name;
 
-  const studentMenu = document.getElementById("student-menu");
-  const staffMenu = document.getElementById("staff-menu");
+ document.getElementById("welcome-title").textContent=
+  "Bienvenido/a, "+account.name;
 
-  if (account.role === "student") {
-    studentMenu.style.display = "block";
-    staffMenu.style.display = "none";
-    renderProfile();
-    openPanel("perfil");
-  } else {
-    studentMenu.style.display = "none";
-    staffMenu.style.display = "block";
-    renderDirectory();
-    openPanel("gestion");
-  }
+ document.getElementById("welcome-text").textContent=
+  account.role==="student"
+   ?"Has ingresado correctamente al portal institucional SEORA."
+   :"Panel institucional de gestión y administración.";
+
+ const studentMenu=document.getElementById("student-menu");
+ const staffMenu=document.getElementById("staff-menu");
+
+ if(account.role==="student"){
+  studentMenu.style.display="grid";
+  staffMenu.style.display="none";
+  renderProfile();
+  openPanel("perfil");
+ }else{
+  studentMenu.style.display="none";
+  staffMenu.style.display="grid";
+  renderDirectory();
+  openPanel("gestion");
+ }
 }
 
-function logout() {
-  currentUser = null;
-  currentStudentEmail = null;
-  selectedStudentEmail = null;
+function logout(){
+ currentUser=null;
+ currentStudentEmail=null;
+ selectedStudentEmail=null;
 
-  homeScreen.style.display = "none";
-  sessionBar.style.display = "none";
-  loginScreen.style.display = "flex";
+ homeScreen.style.display="none";
+ sessionBar.style.display="none";
+ loginScreen.style.display="grid";
 
-  document.getElementById("email").value = "";
-  document.getElementById("pass").value = "";
+ document.getElementById("email").value="";
+ document.getElementById("pass").value="";
+ document.getElementById("login-error").style.display="none";
 
-  document.querySelectorAll(".panel").forEach(panel => {
-    panel.style.display = "none";
-  });
+ document.querySelectorAll(".panel").forEach(panel=>{
+  panel.classList.remove("active");
+  panel.style.display="none";
+ });
+
+ closeEvent();
 }
 
-
-/* =========================
+/* =====================================
    NAVEGACIÓN
-========================= */
+===================================== */
 
-function openPanel(panelId) {
-  if (!currentUser) return;
+function openPanel(panelId){
+ if(!currentUser)return;
 
-  const studentPanels = [
-    "perfil",
-    "academico",
-    "horario",
-    "actividades",
-    "asistencia",
-    "residencia"
-  ];
+ const studentPanels=[
+  "perfil","academico","horario",
+  "actividades","asistencia","residencia"
+ ];
 
-  const staffPanels = [
-    "gestion",
-    "student-details",
-    "horarios-admin",
-    "student-edit",
-    "control-asistencia"
-  ];
+ const staffPanels=[
+  "gestion","student-details","horarios-admin",
+  "student-edit","control-asistencia","actividades"
+ ];
 
-  if (
-    currentUser.role === "student" &&
-    !studentPanels.includes(panelId)
-  ) return;
+ if(currentUser.role==="student"&&!studentPanels.includes(panelId)){
+  return;
+ }
 
-  if (
-    currentUser.role !== "student" &&
-    !staffPanels.includes(panelId)
-  ) return;
+ if(currentUser.role!=="student"&&!staffPanels.includes(panelId)){
+  return;
+ }
 
-  document.querySelectorAll(".panel").forEach(panel => {
-    panel.style.display = "none";
-  });
+ document.querySelectorAll(".panel").forEach(panel=>{
+  panel.classList.remove("active");
+  panel.style.display="none";
+ });
 
-  const selectedPanel = document.getElementById(panelId);
+ const panel=document.getElementById(panelId);
+ if(!panel)return;
 
-  if (selectedPanel) {
-    selectedPanel.style.display = "block";
-  }
+ panel.style.display="block";
+ panel.classList.add("active");
 
-  if (panelId === "gestion") renderDirectory();
-  if (panelId === "perfil") renderProfile();
-  if (panelId === "academico") renderAcademic();
-  if (panelId === "horario") renderSchedule();
-  if (panelId === "asistencia") renderStudentAttendance();
-  if (panelId === "residencia") renderResidence();
-  if (panelId === "horarios-admin") renderScheduleAdmin();
-  if (panelId === "control-asistencia") renderAttendanceAdmin();
+ if(panelId==="perfil")renderProfile();
+ if(panelId==="academico")renderAcademic();
+ if(panelId==="horario")renderSchedule();
+ if(panelId==="actividades")loadActivities();
+ if(panelId==="asistencia")renderStudentAttendance();
+ if(panelId==="residencia")renderResidence();
+ if(panelId==="gestion")renderDirectory();
+ if(panelId==="horarios-admin")renderScheduleList();
+ if(panelId==="control-asistencia")renderStaffAttendance();
 }
 
-function goHome() {
-  if (currentUser?.role === "student") {
-    openPanel("perfil");
-  } else if (currentUser) {
-    openPanel("gestion");
-  }
+function goHome(){
+ if(!currentUser)return;
+
+ document.querySelectorAll(".panel").forEach(panel=>{
+  panel.classList.remove("active");
+  panel.style.display="none";
+ });
+
+ homeScreen.style.display="block";
+ closeEvent();
 }
 
+/* =====================================
+   PERFILES Y DATOS ACADÉMICOS
+===================================== */
 
-/* =========================
-   PERFIL DEL ESTUDIANTE
-========================= */
-
-function getCurrentStudent() {
-  return students[currentStudentEmail];
+function makeData(label,value){
+ return `
+  <div class="data">
+   <small>${escapeHTML(label)}</small>
+   <strong>${escapeHTML(value)}</strong>
+  </div>
+ `;
 }
 
-function renderProfile() {
-  if (!currentStudentEmail) return;
+function renderProfile(){
+ const student=students[currentStudentEmail];
+ if(!student)return;
 
-  const student = getCurrentStudent();
-  if (!student) return;
-
-  document.getElementById("profile-name").textContent = student.name;
-  document.getElementById("profile-nickname").textContent = student.nickname;
-  document.getElementById("profile-number").textContent = student.number;
-  document.getElementById("profile-age").textContent = student.age + " años";
-  document.getElementById("profile-year").textContent = student.year;
-  document.getElementById("profile-specialty").textContent = student.specialty;
-  document.getElementById("profile-email").textContent = currentStudentEmail;
-
-  document.getElementById("profile-residence").textContent = student.residence;
+ document.getElementById("profile-content").innerHTML=
+  makeData("Nombre completo",student.name)+
+  makeData("Nombre de uso",student.nickname)+
+  makeData("Número institucional",student.number)+
+  makeData("Edad",student.age+" años")+
+  makeData("Correo institucional",currentStudentEmail)+
+  makeData("Modalidad de residencia",student.residence);
 }
 
-function renderAcademic() {
-  const student = getCurrentStudent();
-  if (!student) return;
+function renderAcademic(){
+ const student=students[currentStudentEmail];
+ if(!student)return;
 
-  document.getElementById("academic-year").textContent = student.year;
-  document.getElementById("academic-specialty").textContent = student.specialty;
-  document.getElementById("academic-number").textContent = student.number;
+ document.getElementById("academic-content").innerHTML=
+  makeData("Nombre",student.name)+
+  makeData("Nivel académico",student.year)+
+  makeData("Especialidad",student.specialty)+
+  makeData("Número institucional",student.number)+
+  makeData("Institución","SEORA");
 }
 
-function renderSchedule() {
-  const student = getCurrentStudent();
-  if (!student) return;
+function renderSchedule(){
+ const student=students[currentStudentEmail];
+ if(!student)return;
 
-  document.getElementById("student-schedule").textContent = student.schedule;
+ document.getElementById("schedule-content").textContent=
+  student.schedule||"Horario pendiente de asignación.";
 }
 
-function renderResidence() {
-  const student = getCurrentStudent();
-  if (!student) return;
+function renderResidence(){
+ const student=students[currentStudentEmail];
+ if(!student)return;
 
-  document.getElementById("residence-info").textContent = student.residence;
+ const isResidence=student.residence==="Residencia estudiantil";
+
+ document.getElementById("residence-content").innerHTML=
+  makeData("Estudiante",student.name)+
+  makeData("Modalidad",student.residence)+
+  makeData(
+   "Información",
+   isResidence
+    ?"El estudiante cuenta con modalidad de alojamiento institucional."
+    :"El estudiante reside en su domicilio particular con sus tutores."
+  );
 }
 
+/* =====================================
+   DIRECTORIO ESTUDIANTIL
+===================================== */
 
-/* =========================
-   DIRECTORIO DE ESTUDIANTES
-========================= */
+function renderDirectory(){
+ const container=document.getElementById("student-list");
 
-function renderDirectory() {
-  const container = document.getElementById("student-list");
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  Object.entries(students).forEach(([email, student]) => {
-    const card = document.createElement("div");
-    card.className = "student-card";
-
-    const heading = document.createElement("h3");
-    heading.textContent = student.name + " · " + student.nickname;
-
-    const details = document.createElement("p");
-    details.textContent =
-      student.number + " | " +
-      student.year + " | " +
-      student.specialty;
-
-    const button = document.createElement("button");
-    button.textContent = "Ver perfil";
-    button.addEventListener("click", () => viewStudent(email));
-
-    card.appendChild(heading);
-    card.appendChild(details);
-    card.appendChild(button);
-
-    container.appendChild(card);
-  });
+ container.innerHTML=Object.entries(students).map(([email,student])=>`
+  <div class="student-item">
+   <strong>${escapeHTML(student.name)}</strong>
+   <br>
+   <small>
+    ${escapeHTML(student.nickname)} ·
+    ${escapeHTML(student.number)}<br>
+    ${escapeHTML(student.year)} ·
+    ${escapeHTML(student.specialty)}
+   </small>
+   <br>
+   <button class="action primary"
+    onclick="viewStudent('${email}')">
+    Ver ficha
+   </button>
+  </div>
+ `).join("");
 }
 
-function viewStudent(email) {
-  if (currentUser?.role === "student") return;
-  if (!students[email]) return;
+function viewStudent(email){
+ if(currentUser?.role==="student")return;
 
-  selectedStudentEmail = email;
+ const student=students[email];
+ if(!student)return;
 
-  const student = students[email];
+ selectedStudentEmail=email;
 
-  document.getElementById("detail-name").textContent = student.name;
-  document.getElementById("detail-nickname").textContent = student.nickname;
-  document.getElementById("detail-number").textContent = student.number;
-  document.getElementById("detail-age").textContent = student.age + " años";
-  document.getElementById("detail-year").textContent = student.year;
-  document.getElementById("detail-specialty").textContent = student.specialty;
-  document.getElementById("detail-email").textContent = email;
-  document.getElementById("detail-residence").textContent = student.residence;
-  document.getElementById("detail-schedule").textContent = student.schedule;
+ document.getElementById("details-content").innerHTML=
+  makeData("Nombre completo",student.name)+
+  makeData("Nombre de uso",student.nickname)+
+  makeData("Número institucional",student.number)+
+  makeData("Edad",student.age+" años")+
+  makeData("Año académico",student.year)+
+  makeData("Especialidad",student.specialty)+
+  makeData("Correo institucional",email)+
+  makeData("Residencia",student.residence);
 
-  openPanel("student-details");
+ openPanel("student-details");
 }
 
+/* =====================================
+   GESTIÓN DE HORARIOS
+===================================== */
 
-/* =========================
-   EDICIÓN DE HORARIOS
-========================= */
+function renderScheduleList(){
+ const container=document.getElementById("schedule-list");
 
-function renderScheduleAdmin() {
-  const select = document.getElementById("schedule-student");
-  if (!select) return;
-
-  select.innerHTML = "";
-
-  Object.entries(students).forEach(([email, student]) => {
-    const option = document.createElement("option");
-    option.value = email;
-    option.textContent = student.name;
-    select.appendChild(option);
-  });
-
-  if (selectedStudentEmail && students[selectedStudentEmail]) {
-    select.value = selectedStudentEmail;
-  }
-
-  loadScheduleForEditing();
+ container.innerHTML=Object.entries(students).map(([email,student])=>`
+  <div class="student-item">
+   <strong>${escapeHTML(student.name)}</strong>
+   <br>
+   <small>${escapeHTML(student.specialty)} · ${escapeHTML(student.year)}</small>
+   <br>
+   <button class="action primary"
+    onclick="editStudentSchedule('${email}')">
+    Editar horario
+   </button>
+  </div>
+ `).join("");
 }
 
-function loadScheduleForEditing() {
-  const select = document.getElementById("schedule-student");
-  const textarea = document.getElementById("schedule-editor");
+function editStudentSchedule(email){
+ if(currentUser?.role==="student")return;
 
-  if (!select || !textarea) return;
+ const student=students[email];
+ if(!student)return;
 
-  const email = select.value;
-  if (!students[email]) return;
+ selectedStudentEmail=email;
 
-  textarea.value = students[email].schedule;
+ document.getElementById("edit-student-name").textContent=
+  student.name+" · "+student.specialty;
+
+ document.getElementById("schedule-input").value=
+  student.schedule||"";
+
+ openPanel("student-edit");
 }
 
-function saveSchedule() {
-  if (currentUser?.role !== "admin" && currentUser?.role !== "director") {
-    return;
-  }
+function saveSchedule(){
+ if(currentUser?.role==="student")return;
+ if(!selectedStudentEmail)return;
 
-  const email = document.getElementById("schedule-student").value;
-  const schedule = document.getElementById("schedule-editor").value;
+ const newSchedule=document.getElementById("schedule-input").value;
 
-  if (!students[email]) return;
+ students[selectedStudentEmail].schedule=newSchedule;
+ savedSchedules[selectedStudentEmail]=newSchedule;
 
-  students[email].schedule = schedule;
-  selectedStudentEmail = email;
-
-  alert("Horario actualizado en esta sesión.");
+ if(saveSchedules()){
+  alert("El horario se ha guardado correctamente.");
+  openPanel("horarios-admin");
+ }
 }
 
-
-/* =========================
+/* =====================================
    ASISTENCIA
-========================= */
+===================================== */
 
-function getStudentAttendance(email) {
-  if (!attendanceData[email]) {
-    attendanceData[email] = {};
-  }
-
-  return attendanceData[email];
+function getToday(){
+ const now=new Date();
+ const year=now.getFullYear();
+ const month=String(now.getMonth()+1).padStart(2,"0");
+ const day=String(now.getDate()).padStart(2,"0");
+ return `${year}-${month}-${day}`;
 }
 
-function renderStudentAttendance() {
-  const student = getCurrentStudent();
-  if (!student) return;
-
-  const records = getStudentAttendance(currentStudentEmail);
-  const container = document.getElementById("student-attendance-list");
-
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  const dates = Object.keys(records).sort().reverse();
-
-  if (dates.length === 0) {
-    container.textContent = "Todavía no hay registros de asistencia.";
-    return;
-  }
-
-  dates.forEach(date => {
-    const row = document.createElement("p");
-    row.textContent = date + " — " + records[date];
-    container.appendChild(row);
-  });
+function getStatusClass(status){
+ if(status==="Presente")return "present";
+ if(status==="Ausente")return "absent";
+ if(status==="Atrasado")return "late";
+ return "pending";
 }
 
-function renderAttendanceAdmin() {
-  const select = document.getElementById("attendance-student");
-  if (!select) return;
+function renderStudentAttendance(){
+ const container=document.getElementById("attendance-content");
+ const records=[];
 
-  select.innerHTML = "";
+ Object.entries(attendanceData).forEach(([date,dayRecords])=>{
+  const record=dayRecords[currentStudentEmail];
+  if(record){
+   records.push({date,status:record.status});
+  }
+ });
 
-  Object.entries(students).forEach(([email, student]) => {
-    const option = document.createElement("option");
-    option.value = email;
-    option.textContent = student.name;
-    select.appendChild(option);
-  });
+ records.sort((a,b)=>b.date.localeCompare(a.date));
 
-  loadAttendanceForEditing();
+ if(records.length===0){
+  container.innerHTML=`
+   <div class="empty">
+    Todavía no hay registros de asistencia disponibles.
+   </div>
+  `;
+  return;
+ }
+
+ container.innerHTML=records.map(record=>`
+  <div class="data">
+   <small>${escapeHTML(record.date)}</small>
+   <span class="status ${getStatusClass(record.status)}">
+    ${escapeHTML(record.status)}
+   </span>
+  </div>
+ `).join("");
 }
 
-function loadAttendanceForEditing() {
-  const select = document.getElementById("attendance-student");
-  const dateInput = document.getElementById("attendance-date");
-  const statusSelect = document.getElementById("attendance-status");
+function renderStaffAttendance(){
+ if(currentUser?.role==="student")return;
 
-  if (!select || !dateInput || !statusSelect) return;
+ const dateInput=document.getElementById("attendance-date");
 
-  const email = select.value;
-  const date = dateInput.value;
+ if(!dateInput.value){
+  dateInput.value=getToday();
+ }
 
-  if (!email || !date) return;
+ const date=dateInput.value;
+ const container=document.getElementById("staff-attendance-list");
 
-  const records = getStudentAttendance(email);
+ container.innerHTML=Object.entries(students).map(([email,student])=>{
+  const currentStatus=
+   attendanceData[date]?.[email]?.status||"Pendiente";
 
-  statusSelect.value = records[date] || "Presente";
+  return `
+   <div class="attendance-row">
+    <strong>${escapeHTML(student.name)}</strong>
+    <br>
+    <small>${escapeHTML(student.number)}</small>
+
+    <label class="field-label">Estado de asistencia</label>
+
+    <select class="field"
+     onchange="setAttendance('${email}',this.value)">
+     <option value="Pendiente" ${currentStatus==="Pendiente"?"selected":""}>
+      Pendiente
+     </option>
+     <option value="Presente" ${currentStatus==="Presente"?"selected":""}>
+      Presente
+     </option>
+     <option value="Ausente" ${currentStatus==="Ausente"?"selected":""}>
+      Ausente
+     </option>
+     <option value="Atrasado" ${currentStatus==="Atrasado"?"selected":""}>
+      Atrasado
+     </option>
+    </select>
+
+    <span class="status ${getStatusClass(currentStatus)}">
+     ${escapeHTML(currentStatus)}
+    </span>
+   </div>
+  `;
+ }).join("");
 }
 
-function saveAttendance() {
-  if (currentUser?.role !== "admin" && currentUser?.role !== "director") {
-    return;
-  }
+function setAttendance(email,status){
+ if(currentUser?.role==="student")return;
 
-  const email = document.getElementById("attendance-student").value;
-  const date = document.getElementById("attendance-date").value;
-  const status = document.getElementById("attendance-status").value;
+ const date=document.getElementById("attendance-date").value;
+ if(!date)return;
 
-  if (!email || !date) {
-    alert("Selecciona un estudiante y una fecha.");
-    return;
-  }
+ if(!attendanceData[date]){
+  attendanceData[date]={};
+ }
 
-  const records = getStudentAttendance(email);
-  records[date] = status;
+ attendanceData[date][email]={status};
 
-  if (saveAttendanceData()) {
-    alert("Registro de asistencia guardado.");
-    renderAttendanceAdmin();
-  }
+ if(saveAttendanceData()){
+  renderStaffAttendance();
+ }
 }
 
+/* =====================================
+   INICIO DEL PORTAL
+===================================== */
 
-/* =========================
-   ACTIVIDADES
-========================= */
-/* =========================
-   FESTIVIDADES Y EVENTOS
-========================= */
+document.getElementById("attendance-date").value=getToday();
 
-function loadActivities() {
-  const container = document.getElementById("activities-list");
-  if (!container) return;
-
-  const activities = [
-    {
-      id: "festival-cultural",
-      name: "Festival Cultural SEORA",
-      date: "18 de noviembre de 2026",
-      time: "10:00 - 17:00 horas",
-      location: "Campus principal · SEORA",
-      status: "Programado",
-      description:
-        "El Festival Cultural SEORA es una celebración institucional dedicada a reconocer, promover y compartir el talento artístico de los estudiantes. Durante esta jornada, el campus se convertirá en un espacio de encuentro donde la música, la actuación, las artes visuales y la producción audiovisual tendrán un papel protagonista.\n\nLa actividad busca fomentar la expresión individual y colectiva, permitiendo que los estudiantes presenten sus trabajos, compartan sus habilidades y conozcan las distintas disciplinas artísticas que forman parte de la comunidad SEORA.\n\nAdemás de las presentaciones, el festival pretende fortalecer la convivencia entre los diferentes cursos y especialidades, creando un ambiente de colaboración, respeto y participación. Será una oportunidad para que cada estudiante pueda descubrir nuevas formas de expresión, conocer el trabajo de sus compañeros y formar parte de una experiencia cultural común.\n\nLa jornada contará con espacios de exhibición, presentaciones preparadas por los estudiantes y actividades abiertas a la comunidad institucional. Cada participación representará el esfuerzo, la creatividad y la dedicación desarrollados durante el proceso académico.",
-
-      objectives: [
-        "Promover la creatividad y la expresión artística.",
-        "Dar visibilidad al trabajo realizado por los estudiantes.",
-        "Fomentar la convivencia entre especialidades.",
-        "Crear espacios de colaboración y participación.",
-        "Reconocer el esfuerzo y la dedicación artística."
-      ],
-
-      program: [
-        ["10:00", "Ceremonia de apertura institucional"],
-        ["10:30", "Recorrido por las exposiciones artísticas"],
-        ["11:30", "Presentaciones musicales"],
-        ["13:00", "Pausa y actividades de convivencia"],
-        ["14:00", "Exhibiciones de actuación y expresión escénica"],
-        ["15:30", "Muestras de producción audiovisual"],
-        ["16:30", "Palabras de cierre y agradecimientos"],
-        ["17:00", "Finalización de la jornada"]
-      ],
-
-      participation:
-        "Los estudiantes podrán participar como expositores, intérpretes, integrantes de presentaciones grupales o asistentes. Las presentaciones y exhibiciones deberán estar coordinadas previamente con el personal responsable de cada especialidad.",
-
-      requirements: [
-        "Respetar los horarios establecidos para cada actividad.",
-        "Mantener el orden en los espacios de exposición.",
-        "Seguir las indicaciones del personal institucional.",
-        "Cuidar los materiales y equipos utilizados durante el evento.",
-        "Mantener una actitud respetuosa hacia todas las presentaciones."
-      ],
-
-      notice:
-        "El programa presentado es de carácter informativo y puede experimentar modificaciones por motivos de organización. Cualquier cambio de horario, ubicación o actividad será comunicado mediante los avisos oficiales del portal SEORA."
-    },
-
-    {
-      id: "dia-deportivo",
-      name: "Día Deportivo SEORA",
-      date: "25 de noviembre de 2026",
-      time: "Por confirmar",
-      location: "Complejo deportivo institucional",
-      status: "Próximamente",
-      description:
-        "El Día Deportivo SEORA será una jornada dedicada a la actividad física, la cooperación y la convivencia estudiantil. Los participantes podrán formar parte de distintas actividades recreativas y competencias organizadas por la institución.\n\nEl objetivo principal será promover el compañerismo, el respeto y el trabajo en equipo, ofreciendo un espacio diferente a las actividades académicas habituales.",
-      objectives: [
-        "Fomentar el compañerismo.",
-        "Promover la participación recreativa.",
-        "Fortalecer el trabajo en equipo."
-      ],
-      program: [
-        ["09:00", "Apertura"],
-        ["10:00", "Actividades grupales"],
-        ["12:00", "Competencias recreativas"],
-        ["15:00", "Cierre"]
-      ],
-      participation:
-        "La participación estará abierta a los estudiantes, de acuerdo con las actividades organizadas.",
-      requirements: [
-        "Respetar las indicaciones de los organizadores.",
-        "Participar de manera responsable.",
-        "Cuidar las instalaciones."
-      ],
-      notice:
-        "La fecha y el programa definitivo serán publicados cuando se confirme la organización del evento."
-    },
-
-    {
-      id: "concierto-invierno",
-      name: "Concierto de Invierno",
-      date: "Fecha por confirmar",
-      time: "Por confirmar",
-      location: "Auditorio principal",
-      status: "En preparación",
-      description:
-        "El Concierto de Invierno será una presentación musical organizada para reunir a los estudiantes de las distintas especialidades en una jornada dedicada a la música y la interpretación.\n\nEl evento permitirá presentar trabajos individuales y grupales, mostrando los avances desarrollados durante el período académico. También será una oportunidad para compartir diferentes estilos musicales y experiencias artísticas.",
-      objectives: [
-        "Compartir el trabajo musical de los estudiantes.",
-        "Promover la interpretación individual y grupal.",
-        "Fomentar la colaboración entre músicos."
-      ],
-      program: [
-        ["Por confirmar", "Apertura del concierto"],
-        ["Por confirmar", "Presentaciones musicales"],
-        ["Por confirmar", "Interpretaciones grupales"],
-        ["Por confirmar", "Cierre"]
-      ],
-      participation:
-        "Los estudiantes interesados podrán participar mediante presentaciones individuales o grupales, previa coordinación con el área musical.",
-      requirements: [
-        "Confirmar la participación con anticipación.",
-        "Respetar los tiempos asignados.",
-        "Preparar los materiales necesarios."
-      ],
-      notice:
-        "La información definitiva del concierto será publicada una vez confirmados la fecha, los horarios y los participantes."
-    }
-  ];
-
-  container.innerHTML = "";
-
-  activities.forEach(activity => {
-    const card = document.createElement("div");
-    card.className = "student-card";
-
-    const title = document.createElement("h3");
-    title.textContent = activity.name;
-
-    const date = document.createElement("p");
-    date.textContent = "Fecha: " + activity.date;
-
-    const location = document.createElement("p");
-    location.textContent = "Ubicación: " + activity.location;
-
-    const status = document.createElement("p");
-    status.textContent = "Estado: " + activity.status;
-
-    const button = document.createElement("button");
-    button.textContent = "Ver detalles";
-
-    button.addEventListener("click", () => {
-      showActivityDetails(activity);
-    });
-
-    card.appendChild(title);
-    card.appendChild(date);
-    card.appendChild(location);
-    card.appendChild(status);
-    card.appendChild(button);
-
-    container.appendChild(card);
-  });
-}
-
-
-/* =========================
-   VISTA DETALLADA DEL EVENTO
-========================= */
-
-function showActivityDetails(activity) {
-  const oldModal = document.getElementById("activity-detail-modal");
-
-  if (oldModal) oldModal.remove();
-
-  const modal = document.createElement("div");
-  modal.id = "activity-detail-modal";
-
-  Object.assign(modal.style, {
-    position: "fixed",
-    inset: "0",
-    zIndex: "9999",
-    background: "rgba(5, 15, 32, 0.75)",
-    overflowY: "auto",
-    padding: "20px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start"
-  });
-
-  const content = document.createElement("div");
-
-  Object.assign(content.style, {
-    background: "#edf2f8",
-    color: "#172943",
-    width: "100%",
-    maxWidth: "760px",
-    margin: "20px auto",
-    borderRadius: "16px",
-    overflow: "hidden",
-    fontFamily: "Arial, sans-serif",
-    boxShadow: "0 15px 45px rgba(0,0,0,.25)"
-  });
-
-  const header = document.createElement("div");
-
-  Object.assign(header.style, {
-    background: "linear-gradient(135deg,#0b1730,#24466f)",
-    color: "white",
-    padding: "25px"
-  });
-
-  const institution = document.createElement("small");
-  institution.textContent = "SEORA · EVENTOS INSTITUCIONALES";
-
-  const title = document.createElement("h1");
-  title.textContent = activity.name;
-  title.style.margin = "15px 0 8px";
-
-  const status = document.createElement("span");
-  status.textContent = activity.status;
-
-  Object.assign(status.style, {
-    display: "inline-block",
-    padding: "6px 12px",
-    borderRadius: "20px",
-    background: "#ffffff22",
-    fontSize: "12px"
-  });
-
-  header.append(institution, title, status);
-
-  const body = document.createElement("div");
-  body.style.padding = "22px";
-
-  function addSection(sectionTitle, textContent) {
-    const section = document.createElement("section");
-    section.style.background = "white";
-    section.style.padding = "18px";
-    section.style.borderRadius = "12px";
-    section.style.marginBottom = "15px";
-
-    const heading = document.createElement("h3");
-    heading.textContent = sectionTitle;
-    heading.style.marginTop = "0";
-    heading.style.color = "#24466f";
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = textContent;
-    paragraph.style.whiteSpace = "pre-line";
-    paragraph.style.lineHeight = "1.7";
-    paragraph.style.color = "#526782";
-
-    section.append(heading, paragraph);
-    body.appendChild(section);
-  }
-
-  function addListSection(sectionTitle, items) {
-    const section = document.createElement("section");
-    section.style.background = "white";
-    section.style.padding = "18px";
-    section.style.borderRadius = "12px";
-    section.style.marginBottom = "15px";
-
-    const heading = document.createElement("h3");
-    heading.textContent = sectionTitle;
-    heading.style.marginTop = "0";
-    heading.style.color = "#24466f";
-
-    const list = document.createElement("ul");
-    list.style.paddingLeft = "22px";
-    list.style.lineHeight = "1.9";
-    list.style.color = "#526782";
-
-    items.forEach(item => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      list.appendChild(li);
-    });
-
-    section.append(heading, list);
-    body.appendChild(section);
-  }
-
-  /* INFORMACIÓN GENERAL */
-
-  const info = document.createElement("div");
-
-  Object.assign(info.style, {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))",
-    gap: "10px",
-    marginBottom: "15px"
-  });
-
-  [
-    ["Fecha", activity.date],
-    ["Horario", activity.time],
-    ["Ubicación", activity.location]
-  ].forEach(([label, value]) => {
-    const item = document.createElement("div");
-
-    Object.assign(item.style, {
-      background: "white",
-      padding: "14px",
-      borderRadius: "10px"
-    });
-
-    const small = document.createElement("small");
-    small.textContent = label;
-    small.style.color = "#71839b";
-
-    const strong = document.createElement("p");
-    strong.textContent = value;
-    strong.style.fontWeight = "bold";
-    strong.style.marginBottom = "0";
-
-    item.append(small, strong);
-    info.appendChild(item);
-  });
-
-  body.appendChild(info);
-
-  addSection("Descripción del evento", activity.description);
-
-  addListSection("Objetivos institucionales", activity.objectives);
-
-  /* PROGRAMA */
-
-  const programSection = document.createElement("section");
-
-  Object.assign(programSection.style, {
-    background: "white",
-    padding: "18px",
-    borderRadius: "12px",
-    marginBottom: "15px"
-  });
-
-  const programTitle = document.createElement("h3");
-  programTitle.textContent = "Programa de actividades";
-  programTitle.style.color = "#24466f";
-  programTitle.style.marginTop = "0";
-
-  programSection.appendChild(programTitle);
-
-  activity.program.forEach(([time, name]) => {
-    const row = document.createElement("div");
-
-    Object.assign(row.style, {
-      display: "flex",
-      gap: "15px",
-      padding: "12px 0",
-      borderBottom: "1px solid #e6ebf2"
-    });
-
-    const hour = document.createElement("strong");
-    hour.textContent = time;
-    hour.style.color = "#315d91";
-    hour.style.minWidth = "65px";
-
-    const eventName = document.createElement("span");
-    eventName.textContent = name;
-    eventName.style.color = "#526782";
-
-    row.append(hour, eventName);
-    programSection.appendChild(row);
-  });
-
-  body.appendChild(programSection);
-
-  addSection("Modalidad de participación", activity.participation);
-
-  addListSection("Indicaciones para los participantes", activity.requirements);
-
-  addSection("Avisos institucionales", activity.notice);
-
-  /* CIERRE */
-
-  const footer = document.createElement("div");
-
-  Object.assign(footer.style, {
-    padding: "20px",
-    background: "#ffffff",
-    textAlign: "center"
-  });
-
-  const closeButton = document.createElement("button");
-  closeButton.textContent = "Volver al calendario";
-
-  Object.assign(closeButton.style, {
-    background: "#17345a",
-    color: "white",
-    border: "none",
-    borderRadius: "8px",
-    padding: "13px 22px",
-    cursor: "pointer",
-    fontWeight: "bold"
-  });
-
-  closeButton.addEventListener("click", () => {
-    modal.remove();
-  });
-
-  footer.appendChild(closeButton);
-
-  content.append(header, body, footer);
-  modal.appendChild(content);
-
-  modal.addEventListener("click", event => {
-    if (event.target === modal) {
-      modal.remove();
-    }
-  });
-
-  document.body.appendChild(modal);
-     }
-  const container = document.getElementById("activities-list");
-  if (!container) return;
-
-  const activities = [
-    {
-      name: "Evaluación semestral",
-      date: "Por confirmar",
-      description: "Evaluaciones académicas del semestre."
-    },
-    {
-      name: "Taller artístico",
-      date: "Por confirmar",
-      description: "Actividad interdisciplinaria para estudiantes."
-    },
-    {
-      name: "Presentación institucional",
-      date: "Por confirmar",
-      description: "Muestra de proyectos y trabajos estudiantiles."
-    }
-  ];
-
-  container.innerHTML = "";
-
-  activities.forEach(activity => {
-    const card = document.createElement("div");
-    card.className = "student-card";
-
-    const title = document.createElement("h3");
-    title.textContent = activity.name;
-
-    const date = document.createElement("p");
-    date.textContent = "Fecha: " + activity.date;
-
-    const description = document.createElement("p");
-    description.textContent = activity.description;
-
-    card.appendChild(title);
-    card.appendChild(date);
-    card.appendChild(description);
-
-    container.appendChild(card);
-  });
-}
-
-
-/* =========================
-   EVENTOS DE SELECTORES
-========================= */
-
-document.getElementById("schedule-student")
-  ?.addEventListener("change", loadScheduleForEditing);
-
-document.getElementById("attendance-student")
-  ?.addEventListener("change", loadAttendanceForEditing);
-
-document.getElementById("attendance-date")
-  ?.addEventListener("change", loadAttendanceForEditing);
-
-
-/* =========================
-   INICIALIZACIÓN
-========================= */
-
-document.addEventListener("DOMContentLoaded", function() {
-  loadActivities();
-
-  const dateInput = document.getElementById("attendance-date");
-
-  if (dateInput) {
-    dateInput.value = new Date().toISOString().slice(0, 10);
-  }
-});
 </script>
 
-</main>
 </body>
 </html>
